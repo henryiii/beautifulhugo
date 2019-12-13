@@ -133,6 +133,11 @@ img {
   margin: auto;
   max-width: 100%;
 }
+@media (prefers-color-scheme: dark) {
+img {
+  background-color: white;
+}
+}
 
 .img-title {
   width: 100%;
@@ -753,8 +758,18 @@ table tr {
   margin: 0;
   padding: 0;
 }
+@media (prefers-color-scheme: dark) {
+}
 table tr:nth-child(2n) {
   background-color: #f8f8f8;
+}
+@media (prefers-color-scheme: dark) {
+table tr {
+  background-color: #181818;
+}
+table tr:nth-child(2n) {
+  background-color: #303030
+}
 }
 table tr th {
   font-weight: bold;
@@ -918,5 +933,7 @@ h4.see-also {
   pre.chroma .nb {
     color: #00fee9;
   }
-
+  pre.chroma .ow {
+    color: #CC0;
+  }
 }
