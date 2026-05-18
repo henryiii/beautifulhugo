@@ -1988,6 +1988,26 @@ mjx-container mjx-wrap {
 }
 
 /* Dark grey tooltip background instead of black */
-.tooltip {
-  --bs-tooltip-bg: #343a40;
+.tooltip .tooltip-inner {
+  background-color: #343a40 !important;
+}
+
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+  border-top-color: #343a40 !important;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+  border-bottom-color: #343a40 !important;
+}
+
+.bs-tooltip-start .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+  border-left-color: #343a40 !important;
+}
+
+.bs-tooltip-end .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+  border-right-color: #343a40 !important;
 }
