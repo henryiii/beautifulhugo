@@ -212,3 +212,23 @@
     few: "{{ .Count }} секунды"
     many: "{{ .Count }} секунд"
     other: "{{ .Count }} секунды"
+- id: breadcrumbHomeLabel
+  translation: "Главная"
+- id: paginationPageLabel
+  translation: "Страница {{ . }}"
+- id: tagsLabel
+  translation: "Теги: "
+- id: taxonomyPagesDescription
+  translation: "Полный указатель {{ . }} для организации тем."
+- id: taxonomyPagesTitle
+  translation: "Просмотр содержимого по {{ . }}"
+- id: termPagesDescription
+  translation: "Все записи и мысли, связанные с {{ . }}"
+- id: termPagesTitle
+  translation: "Статьи с тегом '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Закрыть оглавление"
+- id: tocLabel
+  translation: "Оглавление"
+- id: tocPostsLabel
+  translation: "Записи"

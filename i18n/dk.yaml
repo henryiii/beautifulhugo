@@ -205,3 +205,23 @@
   translation:
     one: "{{ .Count }} sek."
     other: "{{ .Count }} sek."
+- id: breadcrumbHomeLabel
+  translation: "Hjem"
+- id: paginationPageLabel
+  translation: "Side {{ . }}"
+- id: tagsLabel
+  translation: "Tags: "
+- id: taxonomyPagesDescription
+  translation: "Et komplet indeks over {{ . }} brugt til at organisere emner."
+- id: taxonomyPagesTitle
+  translation: "Gennemse indhold efter {{ . }}"
+- id: termPagesDescription
+  translation: "Udforsk alle indlæg og tanker relateret til {{ . }}"
+- id: termPagesTitle
+  translation: "Artikler tagget med '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Luk indholdsfortegnelse"
+- id: tocLabel
+  translation: "Indholdsfortegnelse"
+- id: tocPostsLabel
+  translation: "Indlæg"

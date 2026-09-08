@@ -213,3 +213,23 @@
     few: "{{ .Count }} sekundy"
     many: "{{ .Count }} sekund"
     other: "{{ .Count }} sekundy"
+- id: breadcrumbHomeLabel
+  translation: "Strona główna"
+- id: paginationPageLabel
+  translation: "Strona {{ . }}"
+- id: tagsLabel
+  translation: "Tagi: "
+- id: taxonomyPagesDescription
+  translation: "Pełny indeks {{ . }} służący do porządkowania tematów."
+- id: taxonomyPagesTitle
+  translation: "Przeglądaj treści według {{ . }}"
+- id: termPagesDescription
+  translation: "Poznaj wszystkie wpisy i przemyślenia związane z {{ . }}"
+- id: termPagesTitle
+  translation: "Artykuły oznaczone tagiem '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Zamknij spis treści"
+- id: tocLabel
+  translation: "Spis treści"
+- id: tocPostsLabel
+  translation: "Wpisy"

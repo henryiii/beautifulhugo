@@ -204,3 +204,23 @@
   translation:
     one: "{{ .Count }} saniye"
     other: "{{ .Count }} saniye"
+- id: breadcrumbHomeLabel
+  translation: "Ana Sayfa"
+- id: paginationPageLabel
+  translation: "Sayfa {{ . }}"
+- id: tagsLabel
+  translation: "Etiketler: "
+- id: taxonomyPagesDescription
+  translation: "Konuları düzenlemek için kullanılan {{ . }} dizininin tamamı."
+- id: taxonomyPagesTitle
+  translation: "İçeriğe {{ . }} ile göz atın"
+- id: termPagesDescription
+  translation: "{{ . }} ile ilgili tüm yazıları ve düşünceleri keşfedin"
+- id: termPagesTitle
+  translation: "'{{ . }}' etiketli yazılar"
+- id: tocCloseLabel
+  translation: "İçindekiler tablosunu kapat"
+- id: tocLabel
+  translation: "İçindekiler"
+- id: tocPostsLabel
+  translation: "Yazılar"

@@ -204,3 +204,23 @@
   translation:
     one: "{{ .Count }} sekundo"
     other: "{{ .Count }} sekundoj"
+- id: breadcrumbHomeLabel
+  translation: "Hejmo"
+- id: paginationPageLabel
+  translation: "Paĝo {{ . }}"
+- id: tagsLabel
+  translation: "Etikedoj: "
+- id: taxonomyPagesDescription
+  translation: "Kompleta indekso de {{ . }} uzata por organizi temojn."
+- id: taxonomyPagesTitle
+  translation: "Foliumi enhavon laŭ {{ . }}"
+- id: termPagesDescription
+  translation: "Esploru ĉiujn afiŝojn kaj pensojn rilatajn al {{ . }}"
+- id: termPagesTitle
+  translation: "Artikoloj etikeditaj per '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Fermi enhavtabelon"
+- id: tocLabel
+  translation: "Enhavtabelo"
+- id: tocPostsLabel
+  translation: "Afiŝoj"

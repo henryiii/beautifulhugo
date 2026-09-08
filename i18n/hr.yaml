@@ -204,3 +204,23 @@
   translation:
     one: "{{ .Count }} sek"
     other: "{{ .Count }} sek"
+- id: breadcrumbHomeLabel
+  translation: "Početna"
+- id: paginationPageLabel
+  translation: "Stranica {{ . }}"
+- id: tagsLabel
+  translation: "Oznake: "
+- id: taxonomyPagesDescription
+  translation: "Potpuni indeks {{ . }} za organizaciju tema."
+- id: taxonomyPagesTitle
+  translation: "Pregledaj sadržaj po {{ . }}"
+- id: termPagesDescription
+  translation: "Istražite sve objave i razmišljanja vezane uz {{ . }}"
+- id: termPagesTitle
+  translation: "Članci označeni s '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Zatvori sadržaj"
+- id: tocLabel
+  translation: "Sadržaj"
+- id: tocPostsLabel
+  translation: "Objave"

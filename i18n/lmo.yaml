@@ -339,3 +339,23 @@
   translation:
     one: "{{ .Count }} segond"
     other: "{{ .Count }} segond"
+- id: breadcrumbHomeLabel
+  translation: "Pagina principala"
+- id: paginationPageLabel
+  translation: "Pagina {{ . }}"
+- id: tagsLabel
+  translation: "Tag: "
+- id: taxonomyPagesDescription
+  translation: "On indes complet di {{ . }} doperaa per organizà i argoment."
+- id: taxonomyPagesTitle
+  translation: "Sfoja i contegnuu per {{ . }}"
+- id: termPagesDescription
+  translation: "Scoeuvr tucc i articol e i penser ligaa a {{ . }}"
+- id: termPagesTitle
+  translation: "Articol cont el tag '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Sara l'indes"
+- id: tocLabel
+  translation: "Indes"
+- id: tocPostsLabel
+  translation: "Articol"

@@ -204,3 +204,23 @@
   translation:
     one: "{{ .Count }} secondo"
     other: "{{ .Count }} secondi"
+- id: breadcrumbHomeLabel
+  translation: "Home"
+- id: paginationPageLabel
+  translation: "Pagina {{ . }}"
+- id: tagsLabel
+  translation: "Tag: "
+- id: taxonomyPagesDescription
+  translation: "Un indice completo di {{ . }} usati per organizzare gli argomenti."
+- id: taxonomyPagesTitle
+  translation: "Sfoglia i contenuti per {{ . }}"
+- id: termPagesDescription
+  translation: "Esplora tutti gli articoli e i pensieri relativi a {{ . }}"
+- id: termPagesTitle
+  translation: "Articoli con tag '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Chiudi l'indice"
+- id: tocLabel
+  translation: "Indice"
+- id: tocPostsLabel
+  translation: "Articoli"
