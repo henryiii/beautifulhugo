@@ -205,3 +205,23 @@
   translation:
     one: "{{ .Count }} seconde"
     other: "{{ .Count }} seconden"
+- id: breadcrumbHomeLabel
+  translation: "Home"
+- id: paginationPageLabel
+  translation: "Pagina {{ . }}"
+- id: tagsLabel
+  translation: "Tags: "
+- id: taxonomyPagesDescription
+  translation: "Een volledige index van {{ . }} om onderwerpen te ordenen."
+- id: taxonomyPagesTitle
+  translation: "Blader door inhoud op {{ . }}"
+- id: termPagesDescription
+  translation: "Verken alle berichten en gedachten over {{ . }}"
+- id: termPagesTitle
+  translation: "Artikelen met tag '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Inhoudsopgave sluiten"
+- id: tocLabel
+  translation: "Inhoudsopgave"
+- id: tocPostsLabel
+  translation: "Berichten"

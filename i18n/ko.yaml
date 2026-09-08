@@ -201,3 +201,23 @@
 - id: recipeSecond
   translation:
     other: "{{ .Count }}초"
+- id: breadcrumbHomeLabel
+  translation: "홈"
+- id: paginationPageLabel
+  translation: "{{ . }} 페이지"
+- id: tagsLabel
+  translation: "태그: "
+- id: taxonomyPagesDescription
+  translation: "주제를 정리하기 위한 {{ . }}의 전체 색인입니다."
+- id: taxonomyPagesTitle
+  translation: "{{ . }}별 콘텐츠 둘러보기"
+- id: termPagesDescription
+  translation: "{{ . }}과(와) 관련된 모든 글과 생각을 살펴보세요"
+- id: termPagesTitle
+  translation: "'{{ . }}' 태그가 붙은 글"
+- id: tocCloseLabel
+  translation: "목차 닫기"
+- id: tocLabel
+  translation: "목차"
+- id: tocPostsLabel
+  translation: "글"

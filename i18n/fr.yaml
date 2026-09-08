@@ -204,3 +204,23 @@
   translation:
     one: "{{ .Count }} s"
     other: "{{ .Count }} s"
+- id: breadcrumbHomeLabel
+  translation: "Accueil"
+- id: paginationPageLabel
+  translation: "Page {{ . }}"
+- id: tagsLabel
+  translation: "Étiquettes : "
+- id: taxonomyPagesDescription
+  translation: "Un index complet des {{ . }} utilisés pour organiser les sujets."
+- id: taxonomyPagesTitle
+  translation: "Parcourir le contenu par {{ . }}"
+- id: termPagesDescription
+  translation: "Explorez tous les articles et réflexions liés à {{ . }}"
+- id: termPagesTitle
+  translation: "Articles étiquetés '{{ . }}'"
+- id: tocCloseLabel
+  translation: "Fermer la table des matières"
+- id: tocLabel
+  translation: "Table des matières"
+- id: tocPostsLabel
+  translation: "Articles"

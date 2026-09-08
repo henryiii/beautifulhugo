@@ -200,3 +200,23 @@
 - id: recipeSecond
   translation:
     other: "{{ .Count }}秒"
+- id: breadcrumbHomeLabel
+  translation: "ホーム"
+- id: paginationPageLabel
+  translation: "{{ . }} ページ"
+- id: tagsLabel
+  translation: "タグ: "
+- id: taxonomyPagesDescription
+  translation: "トピックを整理するための{{ . }}の完全な索引。"
+- id: taxonomyPagesTitle
+  translation: "{{ . }}でコンテンツを探す"
+- id: termPagesDescription
+  translation: "{{ . }}に関連するすべての投稿と考えを探す"
+- id: termPagesTitle
+  translation: "'{{ . }}'のタグが付いた記事"
+- id: tocCloseLabel
+  translation: "目次を閉じる"
+- id: tocLabel
+  translation: "目次"
+- id: tocPostsLabel
+  translation: "投稿"

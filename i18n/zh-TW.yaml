@@ -201,3 +201,23 @@
 - id: recipeSecond
   translation:
     other: "{{ .Count }}秒"
+- id: breadcrumbHomeLabel
+  translation: "首頁"
+- id: paginationPageLabel
+  translation: "第 {{ . }} 頁"
+- id: tagsLabel
+  translation: "標籤："
+- id: taxonomyPagesDescription
+  translation: "用於整理主題的{{ . }}完整索引。"
+- id: taxonomyPagesTitle
+  translation: "依{{ . }}瀏覽內容"
+- id: termPagesDescription
+  translation: "瀏覽與{{ . }}相關的所有文章和想法"
+- id: termPagesTitle
+  translation: "標記為「{{ . }}」的文章"
+- id: tocCloseLabel
+  translation: "關閉目錄"
+- id: tocLabel
+  translation: "目錄"
+- id: tocPostsLabel
+  translation: "文章"
