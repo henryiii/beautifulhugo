@@ -11,6 +11,12 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+// Utility: decode HTML entities (e.g. from indexed content) before re-escaping
+function decodeHtml(text) {
+  if (!text) return '';
+  return new DOMParser().parseFromString(text, 'text/html').body.textContent || '';
+}
+
 // Utility: update URL without reloading
 function updateUrl(query, page) {
   const newUrl = new URL(window.location);
@@ -105,9 +111,9 @@ function renderResults(query, page) {
     pageResults.forEach(function(data) {
       html += '<div class="result">';
       html += '<a class="result-title" href="' + escapeHtml(data.url) + '">' +
-      escapeHtml(data.title || (window.searchConfig ? window.searchConfig.untitledText : '')) + '</a>';
+      escapeHtml(decodeHtml(data.title) || (window.searchConfig ? window.searchConfig.untitledText : '')) + '</a>';
     if (data.excerpt) {
-      html += '<div class="result-excerpt">' + escapeHtml(data.excerpt) + '</div>';
+      html += '<div class="result-excerpt">' + escapeHtml(decodeHtml(data.excerpt)) + '</div>';
     }
     html += '</div>';
   });
