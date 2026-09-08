@@ -17,8 +17,9 @@ function decodeHtml(text) {
   return new DOMParser().parseFromString(text, 'text/html').body.textContent || '';
 }
 
-// Utility: update URL without reloading
-function updateUrl(query, page) {
+// Utility: update URL without reloading. Use push=true only for explicit
+// page changes; typing keeps replaceState so it does not spam history.
+function updateUrl(query, page, push) {
   const newUrl = new URL(window.location);
   if (query) {
     newUrl.searchParams.set('q', query);
@@ -31,7 +32,11 @@ function updateUrl(query, page) {
   } else {
     newUrl.searchParams.delete('page');
   }
-  window.history.pushState({}, '', newUrl);
+  if (push) {
+    window.history.pushState({}, '', newUrl);
+  } else {
+    window.history.replaceState({}, '', newUrl);
+  }
 }
 
 async function initSearch() {
@@ -47,20 +52,20 @@ async function initSearch() {
   }
 }
 
-window.doSearch = function(page) {
+window.doSearch = function(page, push) {
   page = page || 1;
   const input = document.getElementById('searchInput');
   if (!input) return;
   const query = input.value.trim();
 
   if (!query) {
-    updateUrl('', 1);
+    updateUrl('', 1, push);
     const container = document.getElementById('resultsContainer');
     if (container) container.innerHTML = '';
     return;
   }
 
-  updateUrl(query, page);
+  updateUrl(query, page, push);
 
   const container = document.getElementById('resultsContainer');
   if (container) {
@@ -127,14 +132,14 @@ function renderPagination(currentPage, totalResults) {
   if (currentPage > 1) {
     const prevText = window.searchConfig ? window.searchConfig.prevText : '';
     html += '<li class="pager-prev">';
-    html += '<a href="javascript:void(0)" onclick="window.doSearch(' + (currentPage - 1) + ')">&larr; ' + prevText + '</a>';
+    html += '<button type="button" data-page="' + (currentPage - 1) + '">&larr; ' + prevText + '</button>';
     html += '</li>';
   }
 
   if (currentPage < totalPages) {
     const nextText = window.searchConfig ? window.searchConfig.nextText : '';
     html += '<li class="pager-next">';
-    html += '<a href="javascript:void(0)" onclick="window.doSearch(' + (currentPage + 1) + ')">' + nextText + ' &rarr;</a>';
+    html += '<button type="button" data-page="' + (currentPage + 1) + '">' + nextText + ' &rarr;</button>';
     html += '</li>';
   }
 
@@ -170,6 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') window.doSearch();
+      });
+    }
+
+    const paginationContainer = document.getElementById('search-pagination');
+    if (paginationContainer) {
+      paginationContainer.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-page]');
+        if (!button) return;
+        window.doSearch(Number(button.dataset.page), true);
       });
     }
 
