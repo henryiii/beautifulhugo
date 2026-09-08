@@ -14,7 +14,7 @@
     {{- else }}
 
     <div class="search-field-wrapper">
-      <span class="fas fa-search search-field-icon" aria-hidden="true"></span>
+      <span class="fas fa-magnifying-glass search-field-icon" aria-hidden="true"></span>
       <input type="search" class="search-field-input" id="searchInput"
              placeholder="{{ $search.placeholder | default (i18n "searchPlaceholder" | default "Search posts and pages…" ) }}"
              aria-label="{{ $search.search_label | default (i18n "searchToggleLabel" | default "Search" ) }}"

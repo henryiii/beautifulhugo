@@ -93,7 +93,7 @@ When `selfHosted = true`, the following assets are served from `static/` instead
 | Asset | CDN Source | Local Path |
 |-------|-----------|------------|
 | Bootstrap 5.3.5 CSS | `cdn.jsdelivr.net` | `css/bootstrap.min.css` |
-| Font Awesome 7 | `use.fontawesome.com` | `fontawesome/css/*.min.css` |
+| Font Awesome 7 | `use.fontawesome.com` | `fontawesome/css/all.min.css` + `fontawesome/webfonts/` |
 | KaTeX CSS | `cdn.jsdelivr.net` | `css/katex.min.css` |
 | KaTeX JS | `cdn.jsdelivr.net` | `js/katex.min.js` + `js/auto-render.min.js` |
 | Google Fonts (Lora, Open Sans) | `fonts.googleapis.com` | `css/fonts.css` + `fonts/` |
