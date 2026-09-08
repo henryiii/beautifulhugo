@@ -12,7 +12,12 @@
 {{ $badges := .Params.ghBadge | default .Site.Params.ghBadge }}
 {{ if and .Params.ghRepo $badges }}
   {{ $repo := .Params.ghRepo }}
-  {{ $count := .Params.ghCount | default .Site.Params.ghCount | default true }}
+  {{ $count := true }}
+  {{ if isset .Params "ghCount" }}
+    {{ $count = .Params.ghCount }}
+  {{ else if isset .Site.Params "ghCount" }}
+    {{ $count = .Site.Params.ghCount }}
+  {{ end }}
   {{ $user := index (split $repo "/") 0 }}
   {{ $repoName := index (split $repo "/") 1 }}
     <div class="gh-buttons" style="margin-bottom: 20px;">

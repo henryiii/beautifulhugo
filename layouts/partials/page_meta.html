@@ -1,5 +1,8 @@
 <div class="page-meta">
-  {{ $show := default .Site.Params.showPageDates .Params.showPageDates }}
+  {{ $show := .Site.Params.showPageDates }}
+  {{ if isset .Params "showPageDates" }}
+    {{ $show = .Params.showPageDates }}
+  {{ end }}
   {{ if $show }}
     {{ $format := partial "func/date-format.html" . }}
     {{ $datestr := time.Format $format .Date }}
