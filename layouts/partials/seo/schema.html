@@ -1,8 +1,8 @@
 {{- $paginator := "" -}}
 
 {{/* WebSite and Organization are always present and never change */}}
-{{- $website := partialCached "seo/structured/website" . -}}
-{{- $organization := partialCached "seo/structured/organization" . }}
+{{- $website := partialCached "seo/structured/website" . site.Language.Lang -}}
+{{- $organization := partialCached "seo/structured/organization" . site.Language.Lang }}
 
 {{/* Setup dictionaries for inclusing in @graph */}}
 {{- $webpage := dict }}
