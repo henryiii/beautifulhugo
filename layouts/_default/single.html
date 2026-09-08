@@ -14,22 +14,16 @@
         {{ if .Params.categories }}
           <div class="blog-categories">
             <span>{{ i18n "categoriesLabel" }}</span>
-            {{ range .Params.categories }}
-              {{- $catName := . -}}
-              {{- with $.Site.GetPage (printf "/%s/%s" "categories" ($catName | urlize)) -}}
-              <a href="{{ .RelPermalink }}">{{ $catName }}</a>&nbsp;
-              {{- end -}}
+            {{ range .GetTerms "categories" }}
+              <a href="{{ .RelPermalink }}">{{ .Data.Term }}</a>&nbsp;
             {{ end }}
           </div>
         {{ end }}
         {{ if .Params.tags }}
           <div class="blog-tags">
             <span>{{ i18n "tagsLabel" | default "Tags: " }}</span>
-            {{ range .Params.tags }}
-              {{- $tagName := . -}}
-              {{- with $.Site.GetPage (printf "/%s/%s" "tags" ($tagName | urlize)) -}}
-              <a href="{{ .RelPermalink }}">{{ $tagName }}</a>&nbsp;
-              {{- end -}}
+            {{ range .GetTerms "tags" }}
+              <a href="{{ .RelPermalink }}">{{ .Data.Term }}</a>&nbsp;
             {{ end }}
           </div>
         {{ end }}

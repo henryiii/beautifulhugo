@@ -56,13 +56,9 @@
           <div class="{{$contentColClass}}">
             <div class="{{ .Type }}-heading">
               {{ if $bigimg }}
-              <span class="h1">{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</span>
+              <span class="h1">{{ $title }}</span>
               {{ else }}
-              {{ if eq .Type "list" }}
-                <h1>{{ if .Data.Singular }}#{{ end }}{{ .Title }}</h1>
-              {{ else }}
-                <h1>{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</h1>
-              {{ end }}
+              <h1>{{ $title }}</h1>
               {{ end }}
               {{ if not $isMainContent }}
                 <hr class="small">

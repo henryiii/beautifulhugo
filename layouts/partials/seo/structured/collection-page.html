@@ -1,5 +1,5 @@
 {{- $schema := dict }}
-{{- if .IsNode }}
+{{- if in (slice "home" "section" "taxonomy" "term") .Kind }}
 
   {{/* Reuse the paginator already initialized in seo/schema.html (cached in
        .Store) so the collection here matches the head canonical link and the

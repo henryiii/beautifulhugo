@@ -11,7 +11,8 @@
 {{- $recipe := dict }}
 {{- $collectionOfPosts := dict }}
 
-{{- if .IsNode -}}
+{{/* Branch kinds only; `.IsBranch` needs Hugo 0.163.0, `.IsNode` is deprecated. */}}
+{{- if in (slice "home" "section" "taxonomy" "term") .Kind -}}
   {{/* Shared partial so head and body paginate the same collection and size */}}
   {{- $paginator = partial "func/paginate.html" . -}}
   {{- $isAbsoluteHome := and .IsHome (or (not $paginator) (eq $paginator.PageNumber 1)) -}}
