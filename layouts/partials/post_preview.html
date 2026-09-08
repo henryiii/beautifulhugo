@@ -44,13 +44,13 @@
         {{ if .Params.categories }}
         <span class="blog-tags-label">{{ i18n "categoriesLabel" }}</span>
         {{ range .GetTerms "categories" }}
-        <a href="{{ .RelPermalink }}" class="blog-tags-category">{{ .LinkTitle }}</a>&nbsp;
+        <a href="{{ .RelPermalink }}" class="blog-tags-category">{{ .Data.Term }}</a>&nbsp;
         {{ end }}
         {{ end }}
         {{ if .Params.tags }}
         <span class="blog-tags-label">{{ i18n "tagsLabel" | default "Tags: " }}</span>
         {{ range .GetTerms "tags" }}
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>&nbsp;
+        <a href="{{ .RelPermalink }}">{{ .Data.Term }}</a>&nbsp;
         {{ end }}
         {{ end }}
     </div>

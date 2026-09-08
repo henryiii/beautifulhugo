@@ -15,7 +15,7 @@
           <div class="blog-categories">
             <span>{{ i18n "categoriesLabel" }}</span>
             {{ range .GetTerms "categories" }}
-              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>&nbsp;
+              <a href="{{ .RelPermalink }}">{{ .Data.Term }}</a>&nbsp;
             {{ end }}
           </div>
         {{ end }}
@@ -23,7 +23,7 @@
           <div class="blog-tags">
             <span>{{ i18n "tagsLabel" | default "Tags: " }}</span>
             {{ range .GetTerms "tags" }}
-              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>&nbsp;
+              <a href="{{ .RelPermalink }}">{{ .Data.Term }}</a>&nbsp;
             {{ end }}
           </div>
         {{ end }}
