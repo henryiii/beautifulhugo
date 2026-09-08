@@ -1,10 +1,5 @@
 <span class="post-meta">
-  {{- $data := dict -}}
-  {{- if ge hugo.Version "0.156.0" -}}
-    {{- $data = hugo.Data -}}
-  {{- else -}}
-    {{- $data = .Site.Data -}}
-  {{- end -}}
+  {{- $data := partial "func/data.html" . -}}
   {{ $format := partial "func/date-format.html" . }}
   {{ $datestr := time.Format $format .Date }}
   {{ $lastmodstr := time.Format $format .Lastmod }}

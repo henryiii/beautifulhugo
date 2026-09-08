@@ -28,16 +28,9 @@ function updateUrl(query, page) {
   window.history.pushState({}, '', newUrl);
 }
 
-// Manage button state (enabled/disabled)
-function setButtonsLoading(loading) {
-  // no-op: search is now triggered via input events
-}
-
 async function initSearch() {
-  setButtonsLoading(true);
   try {
     searchEngine = await window.BeautifulHugoSearch.getEngine();
-    setButtonsLoading(false);
     autoSearchFromUrl();
   } catch (e) {
     console.error('Failed to load search index:', e);
@@ -45,7 +38,6 @@ async function initSearch() {
     if (container) {
       container.innerHTML = '<div class="no-results">' + (window.searchConfig ? window.searchConfig.errorIndexLoad : '') + '</div>';
     }
-    setButtonsLoading(false);
   }
 }
 
@@ -143,18 +135,6 @@ function renderPagination(currentPage, totalResults) {
   html += '</ul>';
   return html;
 }
-
-window.feelingLucky = function() {
-  const input = document.getElementById('searchInput');
-  if (!input || !input.value.trim()) return;
-
-  if (!searchEngine) return;
-
-  const result = searchEngine.lucky(input.value.trim());
-  if (result && result.url) {
-    window.location.href = result.url;
-  }
-};
 
 function autoSearchFromUrl() {
   const params = new URLSearchParams(window.location.search);
