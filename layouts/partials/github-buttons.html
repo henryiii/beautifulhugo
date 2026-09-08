@@ -37,7 +37,7 @@
         {{ if ne $type "follow" }}
           {{ $iframeSrc = printf "https://ghbtns.com/github-btn.html?user=%s&repo=%s&type=%s&size=large%s%s" $user $repoName $type $countParam $extra }}
         {{ end }}
-        <iframe src="{{ $iframeSrc }}" frameborder="0" scrolling="0" width="{{ $width }}" height="{{ $height }}" title="GitHub"></iframe>
+        <iframe src="{{ $iframeSrc }}" style="border:0" loading="lazy" width="{{ $width }}" height="{{ $height }}" title="GitHub"></iframe>
       {{ end }}
     </div>
 {{ end }}
