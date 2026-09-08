@@ -126,7 +126,7 @@ var main = {
         var hljsDark = document.getElementById('hljs-dark');
         if (hljsDark) {
           var isDark = (state === 'dark') || (state === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          hljsDark.disabled = !isDark;
+          hljsDark.media = isDark ? 'all' : 'not all';
         }
         updateThemeTooltip(state);
       }
