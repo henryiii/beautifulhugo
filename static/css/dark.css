@@ -63,15 +63,6 @@
   color: var(--dark-navbar-hover);
 }
 
-[data-theme="dark"] .navbar-custom .nav-item.navlinks-container:hover {
-  background: var(--dark-surface-hover);
-}
-
-[data-theme="dark"] .navbar-custom .nav-item.navlinks-container .navlinks-children a {
-  border: 1px solid var(--dark-navbar-border);
-  background: var(--dark-surface);
-}
-
 [data-theme="dark"] .navbar-custom .dropdown-menu {
   background: var(--dark-surface);
   border: 1px solid var(--dark-navbar-border);

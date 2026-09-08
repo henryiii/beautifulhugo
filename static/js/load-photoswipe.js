@@ -4,37 +4,34 @@
 */
 
 /* PhotoSwipe 5 integration for Beautiful Hugo */
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     var items = [];
     var figureEls = [];
 
+    function isLightboxFigure(figure) {
+        return !figure.classList.contains('no-photoswipe') && figure.querySelector('a');
+    }
+
     // Scan all <figure> elements and build the slide data array.
-    $('figure').each(function () {
-        if ($(this).attr('class') === 'no-photoswipe') return true;
+    document.querySelectorAll('figure').forEach(function (figure) {
+        if (!isLightboxFigure(figure)) return;
 
-        var $figure = $(this);
-        var $a = $figure.find('a');
-        if (!$a.length) return true;
+        var a = figure.querySelector('a');
+        var sizeAttr = a.dataset.size;
+        var width = parseInt(a.dataset.pswpWidth, 10) || (sizeAttr ? parseInt(sizeAttr.split('x')[0], 10) : 0);
+        var height = parseInt(a.dataset.pswpHeight, 10) || (sizeAttr ? parseInt(sizeAttr.split('x')[1], 10) : 0);
 
-        var src = $a.attr('href');
-        var sizeAttr = $a.data('size');
-        var width = parseInt($a.data('pswp-width'), 10) || (sizeAttr ? parseInt(sizeAttr.split('x')[0], 10) : 0);
-        var height = parseInt($a.data('pswp-height'), 10) || (sizeAttr ? parseInt(sizeAttr.split('x')[1], 10) : 0);
-
-        var $figcaption = $figure.find('figcaption');
-        var captionHtml = '';
-        if ($figcaption.length) {
-            captionHtml = $figcaption.html();
-        }
+        var figcaption = figure.querySelector('figcaption');
+        var img = figure.querySelector('img');
 
         items.push({
-            src: src,
+            src: a.getAttribute('href'),
             width: width,
             height: height,
-            alt: $figure.find('img').attr('alt') || '',
-            caption: captionHtml
+            alt: (img && img.getAttribute('alt')) || '',
+            caption: figcaption ? figcaption.innerHTML : ''
         });
-        figureEls.push($figure[0]);
+        figureEls.push(figure);
     });
 
     if (!items.length) return;
@@ -90,15 +87,15 @@ $(document).ready(function () {
                         var slide = lightbox.pswp.currSlide;
                         if (slide && slide.data && slide.data.caption) {
                             el.innerHTML = slide.data.caption;
-                            var $attrLink = el.querySelector('a');
-                            if ($attrLink) {
-                                $attrLink.style.pointerEvents = 'auto';
-                                $attrLink.style.color = 'rgba(255, 255, 255, 0.8)';
+                            var attrLink = el.querySelector('a');
+                            if (attrLink) {
+                                attrLink.style.pointerEvents = 'auto';
+                                attrLink.style.color = 'rgba(255, 255, 255, 0.8)';
                             }
-                            var $attr = el.querySelector('p.attr');
-                            if ($attr) {
-                                $attr.style.fontSize = '0.9em';
-                                $attr.style.opacity = '0.8';
+                            var attr = el.querySelector('p.attr');
+                            if (attr) {
+                                attr.style.fontSize = '0.9em';
+                                attr.style.opacity = '0.8';
                             }
                         } else {
                             el.innerHTML = '';
@@ -111,17 +108,11 @@ $(document).ready(function () {
         lightbox.init();
 
         // Wire up click handlers.
-        $('figure').each(function () {
-            if ($(this).attr('class') === 'no-photoswipe') return true;
-            if (!$(this).find('a').length) return true;
-
-            $(this).on('click', function (event) {
-                if ($(event.target).closest('figcaption a').length) return;
+        figureEls.forEach(function (figure, idx) {
+            figure.addEventListener('click', function (event) {
+                if (event.target.closest('figcaption a')) return;
                 event.preventDefault();
-                var idx = figureEls.indexOf(this);
-                if (idx >= 0) {
-                    lightbox.loadAndOpen(idx);
-                }
+                lightbox.loadAndOpen(idx);
             });
         });
     });

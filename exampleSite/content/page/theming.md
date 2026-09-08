@@ -22,7 +22,7 @@ The theme separates footer **content** from page **scripts**. The render order i
 
 1. `footer.html` — the `<footer>` HTML block (social icons, copyright, credits)
 2. `footer_custom.html` — your custom additions
-3. `scripts.html` — jQuery, Bootstrap, `main.js`, KaTeX, PhotoSwipe, and other JS
+3. `scripts.html` — Bootstrap, `main.js`, KaTeX, PhotoSwipe, and other JS
 
 Because scripts are in a separate `scripts.html` partial, overriding `footer.html` in your site **will not break** bigimg, syntax highlighting, or any other JavaScript feature. Simply create `layouts/partials/footer.html` with your custom footer markup.
 
