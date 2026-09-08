@@ -14,14 +14,14 @@
       {{ end }}
       {{ if eq ($.Param "colorScheme" | default "auto") "auto" }}
       <button class="theme-toggle" id="theme-toggle" aria-label="{{ i18n "themeToggleLabel" }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-tooltip-auto="{{ i18n "themeTooltipAuto" }}" data-tooltip-light="{{ i18n "themeTooltipLight" }}" data-tooltip-dark="{{ i18n "themeTooltipDark" }}" title="{{ i18n "themeTooltipAuto" }}">
-        <span class="fas fa-adjust" id="theme-icon-auto"></span>
+        <span class="fas fa-circle-half-stroke" id="theme-icon-auto"></span>
         <span class="fas fa-sun" id="theme-icon-light" style="display: none;"></span>
         <span class="fas fa-moon" id="theme-icon-dark" style="display: none;"></span>
       </button>
       {{ end }}
       {{ if ne $searchProvider "none" }}
       <button class="theme-toggle" id="search-toggle" aria-label="{{ i18n "searchToggleLabel" | default "Search" }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ i18n "searchToggleLabel" | default "Search" }}">
-        <span class="fas fa-search"></span>
+        <span class="fas fa-magnifying-glass"></span>
       </button>
       {{ end }}
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="{{ i18n "toggleNavigation" }}">
@@ -84,7 +84,7 @@
         {{ with .Site.Params.gcse }}
           <li class="nav-item" >
             <a class="nav-link" href="#modalSearch" data-bs-toggle="modal" data-bs-target="#modalSearch" style="outline: none;">
-              <span class="d-md-none">{{ i18n "gcseLabelShort" }}</span> <span id="searchGlyph" class="fas fa-search" aria-hidden="true"></span>
+              <span class="d-md-none">{{ i18n "gcseLabelShort" }}</span> <span id="searchGlyph" class="fas fa-magnifying-glass" aria-hidden="true"></span>
             </a>
           </li>
         {{ end }}
@@ -117,13 +117,13 @@
 {{ if ne $searchProvider "none" }}
 <div id="navbar-search-overlay" class="navbar-search-overlay" aria-hidden="true" role="search">
   <div class="navbar-search-inner container-fluid">
-    <span class="fas fa-search navbar-search-icon" aria-hidden="true"></span>
+    <span class="fas fa-magnifying-glass navbar-search-icon" aria-hidden="true"></span>
     <input type="search" id="navbar-search-input" class="navbar-search-input"
            placeholder="{{ $search.placeholder | default (i18n "searchPlaceholder" | default "Search posts and pages..." ) }}"
            aria-label="{{ i18n "searchToggleLabel" | default "Search" }}"
            autocomplete="off">
     <button id="navbar-search-close" class="theme-toggle" aria-label="{{ i18n "searchCloseLabel" | default "Close search" }}">
-      <span class="fas fa-times"></span>
+      <span class="fas fa-xmark"></span>
     </button>
   </div>
   <div id="navbar-search-results" class="navbar-search-results container-fluid" aria-live="polite"></div>
