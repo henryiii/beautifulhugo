@@ -15,9 +15,7 @@
       {{- if $isListPage -}}
       <ul class="toc-post-list">
         {{- range $listPages -}}
-        {{- if ne .Params.hidden true -}}
         <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-        {{- end -}}
         {{- end -}}
       </ul>
       {{- else -}}
