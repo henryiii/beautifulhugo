@@ -37,41 +37,78 @@
   var backdrop = document.getElementById('toc-backdrop');
   var isOpen = false;
 
-  function openPanel() {
-    isOpen = true;
-    panel.classList.add('toc-open');
-    backdrop.classList.add('toc-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+  function focusable() {
+    return Array.prototype.filter.call(
+      panel.querySelectorAll('a[href], button:not([disabled])'),
+      function (el) {
+        return el.offsetWidth > 0 || el.offsetHeight > 0;
+      }
+    );
   }
 
-  function closePanel() {
+  function openPanel() {
+    isOpen = true;
+    panel.removeAttribute('inert');
+    panel.classList.add('toc-open');
+    backdrop.classList.add('toc-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    if (close) close.focus();
+  }
+
+  function closePanel(returnFocus) {
     isOpen = false;
     panel.classList.remove('toc-open');
     backdrop.classList.remove('toc-open');
-    toggle.setAttribute('aria-expanded', 'false');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    // `inert` drops the closed panel out of the tab order and the
+    // accessibility tree, so its links are not read twice on list pages.
+    if (returnFocus && toggle && panel.contains(document.activeElement)) {
+      toggle.focus();
+    }
+    panel.setAttribute('inert', '');
   }
 
   if (toggle) {
     toggle.addEventListener('click', function () {
-      if (isOpen) closePanel();
+      if (isOpen) closePanel(true);
       else openPanel();
     });
   }
 
-  close.addEventListener('click', closePanel);
-  backdrop.addEventListener('click', closePanel);
+  close.addEventListener('click', function () {
+    closePanel(true);
+  });
+  backdrop.addEventListener('click', function () {
+    closePanel(true);
+  });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && isOpen) closePanel();
+    if (!isOpen) return;
+    if (e.key === 'Escape') {
+      closePanel(true);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    var items = focusable();
+    if (items.length === 0) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   if (mode === 'posts') {
     var postLinks = panel.querySelectorAll('.toc-post-list a');
     postLinks.forEach(function (link) {
       link.addEventListener('click', function () {
-        closePanel();
+        closePanel(false);
       });
     });
 
@@ -120,7 +157,7 @@
     var tocLinks = panel.querySelectorAll('#TableOfContents a');
     tocLinks.forEach(function (link) {
       link.addEventListener('click', function () {
-        closePanel();
+        closePanel(false);
       });
     });
 
