@@ -41,10 +41,13 @@
   });
   panel.addEventListener('hidden.bs.offcanvas', function () {
     if (!returnFocus || !toggle) return;
-    toggle.focus();
     // Focus would otherwise show the toggle's tooltip until the next blur.
+    // Tooltip.show() is queued, so hide() after focus() is too early; disable
+    // the tooltip across the focus call instead.
     var tip = bootstrap.Tooltip.getInstance(toggle);
-    if (tip) tip.hide();
+    if (tip) tip.disable();
+    toggle.focus();
+    if (tip) setTimeout(function () { tip.enable(); }, 0);
   });
 
   // Following a link should leave focus on the destination, not the toggle.
