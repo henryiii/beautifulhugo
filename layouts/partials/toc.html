@@ -5,25 +5,22 @@
 {{- $hasListPages := $tocState.hasListPages -}}
 {{- $listPages := $tocState.listPages -}}
 {{- if or $hasToc $hasListPages -}}
-<div class="toc-wrapper" id="toc-wrapper" data-toc-mode="{{ if $isListPage }}posts{{ else }}headings{{ end }}">
-  <div class="toc-panel" id="toc-panel" role="dialog" aria-modal="true" inert aria-label="{{ i18n "tocLabel" | default "Table of Contents" }}">
-    <div class="toc-header">
-      <span class="toc-title">{{ if $isListPage }}{{ i18n "tocPostsLabel" | default "Posts" }}{{ else }}{{ i18n "tocLabel" | default "Table of Contents" }}{{ end }}</span>
-      <button class="toc-close" id="toc-close" aria-label="{{ i18n "tocCloseLabel" | default "Close table of contents" }}">&times;</button>
-    </div>
-    <nav class="toc-body">
-      {{- if $isListPage -}}
-      <ul class="toc-post-list">
-        {{- range $listPages -}}
-        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-        {{- end -}}
-      </ul>
-      {{- else -}}
-      {{ .TableOfContents }}
-      {{- end -}}
-    </nav>
+<div class="offcanvas offcanvas-start toc-panel" id="toc-panel" tabindex="-1" aria-labelledby="toc-title" data-toc-mode="{{ if $isListPage }}posts{{ else }}headings{{ end }}">
+  <div class="offcanvas-header">
+    <span class="offcanvas-title toc-title" id="toc-title">{{ if $isListPage }}{{ i18n "tocPostsLabel" | default "Posts" }}{{ else }}{{ i18n "tocLabel" | default "Table of Contents" }}{{ end }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{{ i18n "tocCloseLabel" | default "Close table of contents" }}"></button>
   </div>
-  <div class="toc-backdrop" id="toc-backdrop"></div>
+  <nav class="offcanvas-body toc-body">
+    {{- if $isListPage -}}
+    <ul class="toc-post-list">
+      {{- range $listPages -}}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{- end -}}
+    </ul>
+    {{- else -}}
+    {{ .TableOfContents }}
+    {{- end -}}
+  </nav>
 </div>
 {{- end -}}
 {{- end -}}

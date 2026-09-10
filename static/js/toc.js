@@ -1,121 +1,65 @@
 (function () {
-  var wrapper = document.getElementById('toc-wrapper');
-  if (!wrapper) return;
+  var panel = document.getElementById('toc-panel');
+  if (!panel) return;
 
-  var mode = wrapper.getAttribute('data-toc-mode') || 'headings';
+  var mode = panel.getAttribute('data-toc-mode') || 'headings';
+
+  function removePanel() {
+    panel.remove();
+    var navToggle = document.getElementById('toc-toggle');
+    if (navToggle) navToggle.remove();
+  }
 
   if (mode === 'posts') {
-    var postList = wrapper.querySelector('.toc-post-list');
-    var hasPosts = postList && postList.querySelector('li');
-    if (!hasPosts) {
-      wrapper.remove();
-      var navToggle = document.getElementById('toc-toggle');
-      if (navToggle) navToggle.remove();
+    if (!panel.querySelector('.toc-post-list li')) {
+      removePanel();
       return;
     }
   } else {
-    var tocNav = wrapper.querySelector('#TableOfContents');
-    var hasItems = tocNav && tocNav.querySelector('li');
-    if (!hasItems) {
-      wrapper.remove();
-      var navToggle = document.getElementById('toc-toggle');
-      if (navToggle) navToggle.remove();
-      return;
-    }
-    var allLinks = tocNav.querySelectorAll('a');
-    if (allLinks.length <= 1) {
-      wrapper.remove();
-      var navToggle2 = document.getElementById('toc-toggle');
-      if (navToggle2) navToggle2.remove();
+    if (panel.querySelectorAll('#TableOfContents a').length <= 1) {
+      removePanel();
       return;
     }
   }
 
   var toggle = document.getElementById('toc-toggle');
-  var panel = document.getElementById('toc-panel');
-  var close = document.getElementById('toc-close');
-  var backdrop = document.getElementById('toc-backdrop');
-  var isOpen = false;
-
-  function openPanel() {
-    isOpen = true;
-    panel.removeAttribute('inert');
-    panel.classList.add('toc-open');
-    backdrop.classList.add('toc-open');
-    if (toggle) toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    if (close) close.focus();
-  }
-
-  function closePanel(returnFocus) {
-    isOpen = false;
-    panel.classList.remove('toc-open');
-    backdrop.classList.remove('toc-open');
-    if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    // `inert` drops the closed panel out of the tab order and the
-    // accessibility tree, so its links are not read twice on list pages.
-    if (returnFocus && toggle && panel.contains(document.activeElement)) {
-      toggle.focus();
-      // Focus would otherwise show the toggle's tooltip until the next blur.
-      if (window.bootstrap && bootstrap.Tooltip) {
-        var tip = bootstrap.Tooltip.getInstance(toggle);
-        if (tip) tip.hide();
-      }
-    }
-    panel.setAttribute('inert', '');
-  }
+  var offcanvas = bootstrap.Offcanvas.getOrCreateInstance(panel);
+  var returnFocus = true;
 
   if (toggle) {
     toggle.addEventListener('click', function () {
-      if (isOpen) closePanel(true);
-      else openPanel();
+      offcanvas.toggle();
     });
   }
 
-  close.addEventListener('click', function () {
-    closePanel(true);
+  panel.addEventListener('show.bs.offcanvas', function () {
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
   });
-  backdrop.addEventListener('click', function () {
-    closePanel(true);
+  panel.addEventListener('hide.bs.offcanvas', function () {
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    returnFocus = panel.contains(document.activeElement);
+  });
+  panel.addEventListener('hidden.bs.offcanvas', function () {
+    if (!returnFocus || !toggle) return;
+    toggle.focus();
+    // Focus would otherwise show the toggle's tooltip until the next blur.
+    var tip = bootstrap.Tooltip.getInstance(toggle);
+    if (tip) tip.hide();
   });
 
-  document.addEventListener('keydown', function (e) {
-    if (!isOpen) return;
-    if (e.key === 'Escape') {
-      closePanel(true);
-      return;
-    }
-    if (e.key !== 'Tab') return;
-    var items = panel.querySelectorAll('a[href], button:not([disabled])');
-    if (items.length === 0) return;
-    var first = items[0];
-    var last = items[items.length - 1];
-    var active = document.activeElement;
-    // A click on empty panel space leaves focus outside `items`.
-    var outside = !panel.contains(active);
-    if (e.shiftKey && (active === first || outside)) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && (active === last || outside)) {
-      e.preventDefault();
-      first.focus();
+  // Following a link should leave focus on the destination, not the toggle.
+  panel.addEventListener('click', function (e) {
+    if (e.target.closest('a[href]')) {
+      offcanvas.hide();
+      returnFocus = false;
     }
   });
 
   if (mode === 'posts') {
     var postLinks = panel.querySelectorAll('.toc-post-list a');
-    postLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        closePanel(false);
-      });
-    });
 
     var postPreviews = document.querySelectorAll('.post-preview');
-    if (postPreviews.length === 0) {
-      document.body.classList.add('toc-visible');
-      return;
-    }
+    if (postPreviews.length === 0) return;
 
     var activePostLink = null;
 
@@ -153,22 +97,12 @@
       postObserver.observe(el);
     });
   } else {
-    var tocLinks = panel.querySelectorAll('#TableOfContents a');
-    tocLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        closePanel(false);
-      });
-    });
-
     var headings = [];
     document.querySelectorAll('.blog-post h2, .blog-post h3, .blog-post h4, .blog-post h5, .blog-post h6').forEach(function (h) {
       if (h.id) headings.push(h);
     });
 
-    if (headings.length === 0) {
-      document.body.classList.add('toc-visible');
-      return;
-    }
+    if (headings.length === 0) return;
 
     var activeLink = null;
 
@@ -200,6 +134,4 @@
       observer.observe(h);
     });
   }
-
-  document.body.classList.add('toc-visible');
 })();
