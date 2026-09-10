@@ -37,15 +37,6 @@
   var backdrop = document.getElementById('toc-backdrop');
   var isOpen = false;
 
-  function focusable() {
-    return Array.prototype.filter.call(
-      panel.querySelectorAll('a[href], button:not([disabled])'),
-      function (el) {
-        return el.offsetWidth > 0 || el.offsetHeight > 0;
-      }
-    );
-  }
-
   function openPanel() {
     isOpen = true;
     panel.removeAttribute('inert');
@@ -66,6 +57,11 @@
     // accessibility tree, so its links are not read twice on list pages.
     if (returnFocus && toggle && panel.contains(document.activeElement)) {
       toggle.focus();
+      // Focus would otherwise show the toggle's tooltip until the next blur.
+      if (window.bootstrap && bootstrap.Tooltip) {
+        var tip = bootstrap.Tooltip.getInstance(toggle);
+        if (tip) tip.hide();
+      }
     }
     panel.setAttribute('inert', '');
   }
@@ -91,14 +87,17 @@
       return;
     }
     if (e.key !== 'Tab') return;
-    var items = focusable();
+    var items = panel.querySelectorAll('a[href], button:not([disabled])');
     if (items.length === 0) return;
     var first = items[0];
     var last = items[items.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
+    var active = document.activeElement;
+    // A click on empty panel space leaves focus outside `items`.
+    var outside = !panel.contains(active);
+    if (e.shiftKey && (active === first || outside)) {
       e.preventDefault();
       last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
+    } else if (!e.shiftKey && (active === last || outside)) {
       e.preventDefault();
       first.focus();
     }
