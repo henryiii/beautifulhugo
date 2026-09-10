@@ -179,7 +179,7 @@ When `toc = true` (the default), a list-style button appears in the navbar on pa
 
 **On list and home pages**, the panel shows the titles of all posts in the list, not only those on the current pager page. Scrolling through the post previews automatically highlights the currently visible post in the panel.
 
-The panel can be closed by clicking the close button, clicking the backdrop overlay, or pressing `Escape`.
+The panel is a Bootstrap offcanvas. It can be closed by clicking the close button, clicking the backdrop overlay, or pressing `Escape`. Focus stays inside the panel while it is open and returns to the navbar button when it closes.
 
 ## Big Image Header
 
