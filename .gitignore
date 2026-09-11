@@ -54,6 +54,9 @@ Temporary Items
 exampleSite/public/
 /public/
 
+# Hugo Pipes cache for the example site
+exampleSite/resources/
+
 # Claude requires a symlink to AGENTS.md, all other harnesses support the std
 CLAUDE.md
 .claude/
