@@ -6,6 +6,23 @@ comments: false
 
 This page is a complete reference for every configuration option in Beautiful Hugo. All settings go in your site's `hugo.toml` (or `config.toml`/`config.yaml`).
 
+## Requirements
+
+The theme ships its own `hugo.toml` with a version constraint:
+
+```toml
+[module]
+  [module.hugoVersion]
+    min = "0.146.2"
+    extended = true
+```
+
+Use the **extended** Hugo edition, version 0.146.2 or later. The extended edition is necessary because the theme encodes images to WebP. If your Hugo edition or version is not sufficient, Hugo writes a warning and the theme stops the build with an error message.
+
+The same file supplies the theme defaults `colorScheme = "auto"` and `mathEngine = "katex"`. Your site configuration overrides them.
+
+Hugo does not merge all sections of a theme configuration into your site configuration. Markup settings (`[markup.highlight]`, `[markup.goldmark]`) must be in your own site configuration — see [Syntax Highlighting](#syntax-highlighting) and [Markdown Extensions](../markdown-extensions/).
+
 ## Core Settings
 
 | Param | Type | Default | Description |

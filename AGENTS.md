@@ -18,10 +18,15 @@ hugo serve -s exampleSite --disableFastRender
 
 ## Hugo Version
 
-- **Minimum Hugo version**: `0.146.2` (enforced at runtime in `layouts/_default/baseof.html`).
-- **CI matrix** tests against `0.146.2`, `0.155.2`, and `0.163.0`.
+- **Minimum Hugo version**: `0.146.2`, declared in `hugo.toml` (`[module.hugoVersion]`) and in `theme.toml` (`min_version`, for the themes gallery).
+- Hugo only writes a **warning** if `[module.hugoVersion]` is not satisfied, for modules and for classic `themes/` use. `layouts/_default/baseof.html` keeps an `errorf` to stop the build.
+- **CI matrix** tests against `0.146.2`, `0.155.2`, and `0.163.0`. `--panicOnWarning` makes the module warning a CI failure.
 - The deploy workflow pins `0.163.0`.
-- CI uses the **extended** Hugo binary.
+- CI uses the **extended** Hugo binary; the theme declares `extended = true` because it encodes WebP images.
+
+## Theme Configuration (`hugo.toml`)
+
+Hugo merges only some sections of a theme configuration into the site configuration. `params` merge deeply and site values win. Sections such as `[markup]` are **not** merged, so Chroma and goldmark settings must stay in the site configuration (`exampleSite/hugo.toml`).
 
 ## Architecture
 
