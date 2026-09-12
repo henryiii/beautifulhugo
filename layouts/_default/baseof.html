@@ -1,3 +1,4 @@
+{{/* hugo.toml [module.hugoVersion] only warns; this stops the build. */}}
 {{ if lt hugo.Version "0.146.2" }}
 	{{ errorf "Please use Hugo version 0.146.2 or higher!" }}
 {{ end }}
