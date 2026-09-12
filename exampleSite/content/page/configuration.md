@@ -97,7 +97,6 @@ When `selfHosted = true`, the following assets are served from `static/` instead
 | KaTeX CSS | `cdn.jsdelivr.net` | `css/katex.min.css` |
 | KaTeX JS | `cdn.jsdelivr.net` | `js/katex.min.js` + `js/auto-render.min.js` |
 | Google Fonts (Lora, Open Sans) | `fonts.googleapis.com` | `css/fonts.css` + `fonts/` |
-| jQuery 4.0.0 | `code.jquery.com` | `js/jquery-4.0.0.slim.min.js` |
 | Bootstrap 5.3.5 JS | `cdn.jsdelivr.net` | `js/bootstrap.min.js` |
 | KaTeX JS | `cdn.jsdelivr.net` | `js/katex.min.js` + `js/auto-render.min.js` |
 | Highlight.js | `cdn.jsdelivr.net` | `js/highlight.min.js` + `css/highlight*.min.css` |
@@ -276,7 +275,7 @@ Beautiful Hugo provides partial "hooks" that let you inject custom HTML at speci
 | `before_content.html` | Before `.Content` on single pages | Affiliate disclosure, reading-time banner |
 | `after_content.html` | After `.Content`, before tags/share/related | Newsletter signup, author bio, ad unit |
 | `footer_custom.html` | After `</footer>`, before scripts | Custom analytics, chat widget |
-| `scripts_custom.html` | After all theme JS, before `</body>` | Custom JS that depends on jQuery/Bootstrap |
+| `scripts_custom.html` | After all theme JS, before `</body>` | Custom JS that depends on Bootstrap |
 
 See [Theming](../theming/#custom-stylesheets) for details on using these hooks for CSS and script customization.
 

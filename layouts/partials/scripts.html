@@ -6,7 +6,6 @@
 {{- else if eq $mathEngine "mathjax" }}
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.min.js" crossorigin="anonymous"></script>
 {{- end }}
-<script src="{{ "js/jquery-4.0.0.slim.min.js" | relURL }}"></script>
 <script src="{{ "js/bootstrap.min.js" | relURL }}"></script>
 {{- else -}}
 {{- if eq $mathEngine "katex" }}
@@ -15,7 +14,6 @@
 {{- else if eq $mathEngine "mathjax" }}
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.min.js" crossorigin="anonymous"></script>
 {{- end }}
-<script src="https://code.jquery.com/jquery-4.0.0.slim.min.js" integrity="sha384-tcspKDb5tWvyRCOWzevlAeQgHeEzYdUHJpcgnIhcP9w4CnfD7DLAcS+k9QzLbRJO" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 {{- end }}
 
@@ -33,7 +31,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js" integrity="sha384-RH2xi4eIQ/gjtbs9fUXM68sLSi99C7ZWBRX1vDrVv6GQXRibxXLbwO2NGZB74MbU" crossorigin="anonymous"></script>
 {{- end -}}
 <script> hljs.highlightAll(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script>
+<script> document.querySelectorAll('pre.chroma').forEach(function (pre) { pre.style.padding = '0'; }); </script>
 {{- end -}}
 
 {{- if .Site.Params.selfHosted -}}
@@ -89,23 +87,18 @@
 
 
 {{ if and .Site.Params.delayDisqus .Site.Config.Services.Disqus.Shortname }}
-<script type="text/javascript">
-$(function(){
-  $('#show-comments').on('click', function(){
-    var disqus_shortname = '{{ .Site.Config.Services.Disqus.Shortname }}';
-      
-    (function() {
-      var disqus = document.createElement('script'); 
-      disqus.type = 'text/javascript'; 
-      disqus.async = true;
-      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
-    })();
-      
-    $(this).hide();
-    });
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var button = document.getElementById('show-comments');
+  if (!button) return;
+  button.addEventListener('click', function () {
+    var disqus = document.createElement('script');
+    disqus.async = true;
+    disqus.src = '//{{ .Site.Config.Services.Disqus.Shortname }}.disqus.com/embed.js';
+    (document.head || document.body).appendChild(disqus);
+    button.style.display = 'none';
   });
-
+});
 </script>
 <script id="dsq-count-scr" src="//{{ .Site.Config.Services.Disqus.Shortname }}.disqus.com/count.js" async></script>
 {{ end }}
