@@ -22,7 +22,7 @@ hugo serve -s exampleSite --disableFastRender
 - Hugo only writes a **warning** if `[module.hugoVersion]` is not satisfied, for modules and for classic `themes/` use. `layouts/_default/baseof.html` keeps an `errorf` to stop the build.
 - **CI matrix** tests against `0.146.2`, `0.155.2`, and `0.163.0`. `--panicOnWarning` makes the module warning a CI failure.
 - The deploy workflow pins `0.163.0`.
-- CI uses the **extended** Hugo binary; the theme declares `extended = true` because it encodes WebP images.
+- The theme declares `extended = false`: it has no SCSS and no WebP encoding, so the **standard** Hugo edition is sufficient. CI still uses the extended binary.
 
 ## Theme Configuration (`hugo.toml`)
 

@@ -6,7 +6,7 @@
 [module]
   [module.hugoVersion]
     min = "0.146.2"
-    extended = true # WebP encoding in the image partials
+    extended = false # No SCSS or WebP encoding; the standard edition is sufficient
 
 [params]
   colorScheme = "auto"

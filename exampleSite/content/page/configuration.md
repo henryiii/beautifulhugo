@@ -14,10 +14,10 @@ The theme ships its own `hugo.toml` with a version constraint:
 [module]
   [module.hugoVersion]
     min = "0.146.2"
-    extended = true
+    extended = false
 ```
 
-Use the **extended** Hugo edition, version 0.146.2 or later. The extended edition is necessary because the theme encodes images to WebP. If your Hugo edition or version is not sufficient, Hugo writes a warning and the theme stops the build with an error message.
+Use Hugo 0.146.2 or later. The **standard** edition is sufficient; the theme has no SCSS and does not encode WebP images. If your Hugo version is too old, Hugo writes a warning and the theme stops the build with an error message.
 
 The same file supplies the theme defaults `colorScheme = "auto"` and `mathEngine = "katex"`. Your site configuration overrides them.
 
@@ -30,7 +30,7 @@ Hugo does not merge all sections of a theme configuration into your site configu
 | `homeTitle` | string | site title | Brand name shown in the navbar, home page header, and footer link. Falls back to the site title when unset |
 | `subtitle` | string | `""` | Site subtitle shown under the home page title |
 | `mainSections` | list | `["post", "posts"]` | Content sections treated as "posts" on the home page and archive page |
-| `logo` | string | — | Path to a square avatar/logo image. When the file is found via Hugo's asset pipeline (`resources.Get`), it is automatically processed into WebP format (300×300, quality 100) for optimal loading. If the file is not found as a resource, the raw path is used as-is. |
+| `logo` | string | — | Path to a square avatar/logo image. When the file is found via Hugo's asset pipeline (`resources.Get`), it is automatically resized (300×300, quality 100) and keeps its source format. If the file is not found as a resource, the raw path is used as-is. |
 | `favicon` | string | — | Path to favicon |
 | `dateFormat` | string | i18n default | Date format string. Accepts Hugo locale tokens (e.g. `":date_long"`, `":date_medium"`, `":date_short"`) for automatic localization, or a Go time layout string based on the reference time `Mon Jan 2 15:04:05 MST 2006` (e.g. `"January 2, 2006"` or `"2006-01-02"`). **Do not use an example date** like `"2023-10-15"` — the year must be `2006`, month `01`, and day `02`. Locale tokens are recommended for multilingual sites. The theme validates `dateFormat` at build time and will emit a build error if it detects an invalid format (e.g. a date that doesn't use Go's reference time). |
 | `since` | int | — | Start year for copyright range (e.g. `2015 - 2026`) |
