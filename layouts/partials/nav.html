@@ -58,13 +58,13 @@
             {{ if ge (len $siteLanguages) 3 }}
               {{ if .IsTranslated }}
                 <li class="nav-item dropdown" >
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ i18n "languageSwitcherLabel" }}
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ i18n "languageSwitcherLabel" }}" aria-label="{{ i18n "languageSwitcherLabel" }}">
+                    <span class="fas fa-globe" aria-hidden="true"></span> <span class="d-md-none">{{ i18n "languageSwitcherLabel" }}</span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     {{ range $pageTranslations }}
                       {{ if not (eq .Lang $.Site.Language.Lang) }}
-                      <li><a class="dropdown-item" href="{{ .Permalink }}">{{ default .Lang .Site.Language.LanguageName }}</a></li>
+                      <li><a class="dropdown-item" href="{{ .Permalink }}">{{ partial "func/language-name.html" . }}</a></li>
                       {{ end }}
                     {{ end }}
                   </ul>
@@ -74,7 +74,7 @@
             {{ if .IsTranslated }}
               {{ range .Translations }}
                 <li class="nav-item" >
-                  <a class="nav-link" href="{{ .Permalink }}">{{ default .Lang .Site.Language.LanguageName }}</a>
+                  <a class="nav-link" href="{{ .Permalink }}"><span class="fas fa-globe" aria-hidden="true"></span> {{ partial "func/language-name.html" . }}</a>
                 </li>
               {{ end}}
             {{ end }}
