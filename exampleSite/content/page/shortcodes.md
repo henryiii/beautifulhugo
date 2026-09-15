@@ -273,6 +273,8 @@ The `gallery` shortcode renders an image gallery grid with PhotoSwipe support. I
 
 The `mermaid` shortcode renders Mermaid diagrams (flowcharts, sequence diagrams, Gantt charts, etc.) with automatic light/dark mode handling via dual-rendering. It accepts an optional `align` parameter (`center`, `left`, or `right`).
 
+A ` ```mermaid ` fenced code block gives the same result through a codeblock render hook, and is the recommended form. The shortcode stays available.
+
 See [Math & Diagrams](../math-and-diagrams/) for live examples and source code.
 
 ## no-ai-summary

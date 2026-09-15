@@ -1,0 +1,27 @@
+{{- /* Mermaid diagram markup, shared by the mermaid shortcode and the
+       render-codeblock-mermaid hook.
+       Takes a dict:
+       "Page"  - the page, used for the colorScheme param and the load guard,
+       "Inner" - the diagram source,
+       "Align" - optional "left", "center" or "right".
+       The two scripts are emitted for the first diagram on a page only. */ -}}
+{{- $page := .Page -}}
+{{- $colorScheme := $page.Param "colorScheme" | default "auto" -}}
+{{- if not ($page.Store.Get "beautifulhugoMermaid") -}}
+{{- $page.Store.Set "beautifulhugoMermaid" true -}}
+{{ partial "js.html" (dict "path" "js/mermaid.js" "defer" true "minify" false) }}
+{{ partial "js.html" (dict "path" "js/mermaid-render.js" "defer" true) }}
+{{- end }}
+<div class="mermaid-container" {{ with .Align }}style="text-align:{{ . }}"{{ end }}>
+{{- if eq $colorScheme "dark" -}}
+  <div class="theme-dark"></div>
+{{- else if eq $colorScheme "light" -}}
+  <div class="theme-light"></div>
+{{- else -}}
+  <div class="theme-light"></div>
+  <div class="theme-dark"></div>
+{{- end -}}
+</div>
+<pre class="mermaid-src" style="display:none">
+{{ safeHTML .Inner }}
+</pre>

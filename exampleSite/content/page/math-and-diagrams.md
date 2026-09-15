@@ -54,11 +54,11 @@ KaTeX is loaded both from CDN and via self-hosted files (when `selfHosted = true
 
 ## Mermaid
 
-Mermaid renders diagrams from a simple text syntax. Use the `mermaid` shortcode.
+Mermaid renders diagrams from a simple text syntax. Write the diagram in a fenced code block with the `mermaid` language. A codeblock render hook turns it into a diagram. This is the recommended form. The `mermaid` shortcode is still supported and gives the same result.
 
 ### Flowchart
 
-{{< mermaid align="center" >}}
+```mermaid {align="center"}
 graph TD
     A[User visits site] --> B{Has session?}
     B -->|Yes| C[Load preferences]
@@ -72,11 +72,11 @@ graph TD
     G --> J[Display content]
     H --> J
     I --> J
-{{< /mermaid >}}
+```
 
 ### Sequence Diagram
 
-{{< mermaid align="center" >}}
+```mermaid {align="center"}
 sequenceDiagram
     participant U as User
     participant B as Browser
@@ -89,9 +89,11 @@ sequenceDiagram
     S-->>B: JSON response
     B->>B: Render content
     B-->>U: Display page
-{{< /mermaid >}}
+```
 
 ### Gantt Chart
+
+This one uses the shortcode:
 
 {{< mermaid align="center" >}}
 gantt
@@ -108,64 +110,47 @@ gantt
         Go live             :milestone, deploy2, after deploy1, 0d
 {{< /mermaid >}}
 
-### Source — Flowchart
+### Source — Fenced Code Block
 
-```markdown
-{{</* mermaid align="center" */>}}
+````markdown
+```mermaid
 graph TD
     A[User visits site] --> B{Has session?}
     B -->|Yes| C[Load preferences]
     B -->|No| D[Show defaults]
     C --> E[Render page]
     D --> E
-{{</* /mermaid */>}}
 ```
+````
 
-### Source — Sequence Diagram
+### Source — Shortcode
 
 ```markdown
-{{</* mermaid align="center" */>}}
+{{</* mermaid */>}}
 sequenceDiagram
     participant U as User
     participant B as Browser
-    participant S as Server
-    participant DB as Database
     U->>B: Navigate to page
-    B->>S: GET /api/data
-    S->>DB: SELECT * FROM posts
-    DB-->>S: Result set
-    S-->>B: JSON response
-    B->>B: Render content
     B-->>U: Display page
-{{</* /mermaid */>}}
-```
-
-### Source — Gantt Chart
-
-```markdown
-{{</* mermaid align="center" */>}}
-gantt
-    title Project Timeline
-    dateFormat  YYYY-MM-DD
-    section Setup
-        Configure Hugo      :done, setup1, 2026-01-01, 3d
-        Install theme       :done, setup2, after setup1, 2d
-    section Content
-        Write pages         :active, content1, after setup2, 7d
-        Add images          :content2, after content1, 3d
-    section Deploy
-        Build and test      :deploy1, after content2, 2d
-        Go live             :milestone, deploy2, after deploy1, 0d
 {{</* /mermaid */>}}
 ```
 
 ### Alignment
 
-Use the `align` parameter to control horizontal alignment:
+Set the horizontal alignment with a block attribute on the fence, or with the `align` parameter of the shortcode:
 
-- `align="center"` — centered (recommended for most diagrams)
-- `align="left"` — left-aligned
-- `align="right"` — right-aligned
+````markdown
+```mermaid {align="center"}
+graph LR
+    A --> B
+```
+````
+
+- `center` — centered (recommended for most diagrams)
+- `left` — left-aligned
+- `right` — right-aligned
+
+Block attributes need `markup.goldmark.parser.attribute.block = true` in the site configuration.
 
 ### Dark Mode
 
