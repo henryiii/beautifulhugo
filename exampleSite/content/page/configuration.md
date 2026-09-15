@@ -191,6 +191,8 @@ The recommended setup preserves and improves on the old tag-based behavior by in
 
 When `toc = true` (the default), a list-style button appears in the navbar on pages that have headings or list pages that have posts. Clicking it opens a slide-out panel on the left side of the viewport.
 
+The panel is rendered from `baseof.html`, so a site that overrides `single.html`, `list.html`, or `index.html` still gets it.
+
 **On single pages** (posts, regular pages), the panel shows the page's heading hierarchy extracted from the Table of Contents. An `IntersectionObserver` tracks which heading is currently in view and highlights the corresponding link in the panel.
 
 **On list and home pages**, the panel shows the titles of all posts in the list, not only those on the current pager page. Scrolling through the post previews automatically highlights the currently visible post in the panel.

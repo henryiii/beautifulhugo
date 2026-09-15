@@ -29,6 +29,8 @@
     {{ partial "nav.html" . }}
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     {{ block "main" . }}{{ end }}
+    {{/* Outside "main" so site layouts that override it still get the panel. */}}
+    {{ partial "toc.html" . }}
     {{ block "footer" . }}
       {{ partial "footer.html" . }}
       {{ partial "footer_custom.html" . }}
