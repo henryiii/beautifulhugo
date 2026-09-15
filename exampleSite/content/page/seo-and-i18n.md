@@ -224,6 +224,17 @@ A language switcher appears in the navbar:
 - **2 languages**: Inline links next to each other
 - **3+ languages**: Dropdown menu
 
+A globe icon marks the switcher, so readers can find it on a page in a language
+they do not read. Each entry shows the name of its own language in that
+language, for example `Français` and `日本語`. The theme knows the names of the
+usual languages, so no configuration is necessary. To use a different name, set
+`languageName` for that language:
+
+```toml
+[languages.fr]
+  languageName = "Français (France)"
+```
+
 ### Supported Languages
 
 Beautiful Hugo ships with translations for 20 languages:
