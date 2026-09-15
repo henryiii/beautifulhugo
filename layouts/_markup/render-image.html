@@ -1,0 +1,28 @@
+{{- /*
+  Image render hook: routes Markdown images through the theme image
+  helpers. Page-bundle and assets/ images get resized variants, a
+  srcset, and intrinsic dimensions. Images under static/, remote URLs,
+  SVGs, and every image when `Params.imageProcessing = false` fall back
+  to a plain <img>.
+*/ -}}
+{{- $src := .Destination -}}
+{{- $srcset := "" -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- with partial "func/image-resource.html" (dict "Page" .Page "Src" $src) -}}
+  {{- $set := partial "func/image-srcset.html" . -}}
+  {{- $src = $set.src.RelPermalink -}}
+  {{- $srcset = $set.srcset -}}
+  {{- $width = .Width -}}
+  {{- $height = .Height -}}
+{{- else -}}
+  {{- if strings.HasPrefix $src "/" -}}
+    {{- $src = strings.TrimPrefix "/" $src | relURL -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src | safeURL }}"
+  {{- with $srcset }} srcset="{{ . }}" sizes="(max-width: 768px) 100vw, 768px"{{ end }}
+  {{- with $width }} width="{{ . }}"{{ end }}
+  {{- with $height }} height="{{ . }}"{{ end }}
+  {{- with .PlainText }} alt="{{ . }}"{{ end }}
+  {{- with .Title }} title="{{ . }}"{{ end }} loading="lazy">

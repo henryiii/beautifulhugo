@@ -16,3 +16,11 @@ Images in a bundle are also processed by Hugo. The `thumbnail` above is cropped 
 {{< beautifulfigure src="forest.jpg" caption="A page-resource figure with automatic sizes" width="50%" class="center" >}}
 
 {{< gallery dir="photos" caption-effect="fade" />}}
+
+Plain Markdown images get the same treatment. This one is a page resource, so it has a `srcset`:
+
+![A page-resource Markdown image](forest.jpg "Forest")
+
+This one is under `static/`, so it is served unchanged:
+
+![A static Markdown image](/img/global-ike.png)

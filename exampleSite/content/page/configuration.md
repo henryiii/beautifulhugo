@@ -245,7 +245,7 @@ See [Pages & Layouts](../pages-and-layouts/#big-image-headers) for per-page big 
 
 ## Image Processing
 
-Images that Hugo can reach as resources (files in a page bundle or under the site's `assets/` directory) are processed at build time: post preview thumbnails are cropped to a square, header images are capped in width, and figures and galleries get resized `srcset` variants. Images under `static/` are never touched.
+Images that Hugo can reach as resources (files in a page bundle or under the site's `assets/` directory) are processed at build time: post preview thumbnails are cropped to a square, header images are capped in width, and figures, galleries, and plain Markdown images get resized `srcset` variants. Images under `static/` are never touched.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
