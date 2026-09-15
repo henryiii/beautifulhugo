@@ -1,6 +1,10 @@
 (function () {
   var panel = document.getElementById('toc-panel');
-  if (!panel) return;
+  if (!panel) {
+    var orphanToggle = document.getElementById('toc-toggle');
+    if (orphanToggle) orphanToggle.remove();
+    return;
+  }
 
   var mode = panel.getAttribute('data-toc-mode') || 'headings';
 
