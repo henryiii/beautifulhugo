@@ -109,9 +109,11 @@ var main = {
     // Fade and cycle timings in seconds, configurable via Params
     var fadeDuration = parseFloat(main.bigImgEl.getAttribute('data-fade-duration'));
     if (isNaN(fadeDuration)) fadeDuration = 1;
+    if (fadeDuration < 0) fadeDuration = 0;
     var fadeMs = fadeDuration * 1000;
     var cycleInterval = parseFloat(main.bigImgEl.getAttribute('data-cycle-interval'));
     if (isNaN(cycleInterval)) cycleInterval = 6;
+    if (cycleInterval < 0) cycleInterval = 0;
     var cycleMs = cycleInterval * 1000;
 
     // set an initial image
