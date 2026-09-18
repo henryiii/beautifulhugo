@@ -12,18 +12,18 @@ Hugo assigns a **kind** to every page based on where it lives in the content dir
 
 | Kind | URL example | Template | Description |
 |------|-------------|----------|-------------|
-| `home` | `/` | `layouts/_default/list.html` | Site home page |
-| `page` | `/page/about/` | `layouts/_default/single.html` | Standalone content page |
-| `section` | `/post/` | `layouts/_default/list.html` | Section listing (paginated post previews) |
-| `taxonomy` | `/tags/`, `/categories/` | `layouts/_default/terms.html` | All terms in a taxonomy |
-| `term` | `/tags/tutorial/` | `layouts/_default/list.html` | Pages belonging to one term (paginated) |
+| `home` | `/` | `layouts/list.html` | Site home page |
+| `page` | `/page/about/` | `layouts/page.html` | Standalone content page |
+| `section` | `/post/` | `layouts/list.html` | Section listing (paginated post previews) |
+| `taxonomy` | `/tags/`, `/categories/` | `layouts/taxonomy.html` | All terms in a taxonomy |
+| `term` | `/tags/tutorial/` | `layouts/list.html` | Pages belonging to one term (paginated) |
 | `404` | (any invalid URL) | `layouts/404.html` | Error page |
 
 Additionally, the **`archive`** layout is available via front matter for any content page.
 
 ## Home Page
 
-The home page is rendered by `layouts/_default/list.html`. It shows the content of `content/_index.md` at the top (this file is optional), followed by a paginated list of all regular pages whose type is in `mainSections` (default: `["post", "posts"]`).
+The home page is rendered by `layouts/list.html`. It shows the content of `content/_index.md` at the top (this file is optional), followed by a paginated list of all regular pages whose type is in `mainSections` (default: `["post", "posts"]`).
 
 `mainSections` filters on page **type**, not on directory, so you can list any kind of content on the home page. To include standalone pages alongside posts:
 
@@ -58,7 +58,7 @@ Title comes from `homeTitle` (or the site title); `homeTitle` also controls the 
 
 ## Blog Posts
 
-Blog posts live under `content/post/` (or any directory listed in `mainSections`). They use `layouts/_default/single.html` with type `post`, which enables:
+Blog posts live under `content/post/` (or any directory listed in `mainSections`). They use `layouts/page.html` with type `post`, which enables:
 
 - Post metadata in the header (date, reading time, word count, author)
 - Dates are shown unless `hidePostDates: true`
@@ -82,7 +82,7 @@ comments: true
 
 ## Regular Pages
 
-Pages under `content/page/` have type `page`. They use the same `single.html` template but with several features disabled by default:
+Pages under `content/page/` have type `page`. They use the same `page.html` template but with several features disabled by default:
 
 - No post metadata in the header
 - Subtitle rendered as a `<span>` (not a heading)
@@ -122,7 +122,7 @@ See [Configuration — Recipe Pages](../configuration/#recipe-pages) for the ful
 
 ## Section Listings
 
-A section listing page (e.g. `/post/`) shows a paginated list of post previews. It uses `layouts/_default/list.html`. To add content above the post list, create a `_index.md` in the section directory:
+A section listing page (e.g. `/post/`) shows a paginated list of post previews. It uses `layouts/list.html`. To add content above the post list, create a `_index.md` in the section directory:
 
 ```yaml
 ---
@@ -159,7 +159,7 @@ These are configured in `hugo.toml`:
 
 ### Taxonomy listing (`/tags/`, `/categories/`)
 
-The `terms.html` template renders an alphabetical list of all terms, each with a page count and links to the pages belonging to that term.
+The `taxonomy.html` template renders an alphabetical list of all terms, each with a page count and links to the pages belonging to that term.
 
 ### Term listing (`/tags/tutorial/`)
 
@@ -206,7 +206,7 @@ description: All posts in chronological order
 ---
 ```
 
-The `layout` front matter key tells Hugo to use `layouts/_default/archive.html` instead of the default `single.html`.
+The `layout` front matter key tells Hugo to use `layouts/archive.html` instead of the default `page.html`.
 
 ## 404 Page
 
@@ -214,14 +214,12 @@ The 404 page uses `layouts/404.html` and displays a random kaomoji with the loca
 
 ## Choosing a Layout with Front Matter
 
-The `layout` key in front matter selects an alternative template from `layouts/_default/`:
+The `layout` key in front matter selects an alternative template from the theme's `layouts/` directory:
 
 | `layout` value | Template used |
 |----------------|---------------|
-| *(not set)* | `single.html` (for pages) or `list.html` (for sections) |
+| *(not set)* | `page.html` (for pages) or `list.html` (for sections) |
 | `archive` | `archive.html` — chronological list of all posts |
-| `list` | `list.html` — force the list template on a page |
-| `terms` | `terms.html` — force the taxonomy terms template |
 
 ## Archetypes
 

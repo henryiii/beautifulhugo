@@ -10,9 +10,9 @@ Beautiful Hugo uses CSS custom properties for dark mode and provides several hoo
 
 The theme provides three extension points for custom HTML, CSS, and scripts:
 
-- **`layouts/partials/head_custom.html`** — loaded in `<head>`, use for `<style>` blocks or `<link>` tags
-- **`layouts/partials/footer_custom.html`** — loaded after the `<footer>` element and before page scripts, use for additional markup or late-loading styles
-- **`layouts/partials/footer.html`** — can be overridden to customize the footer content (links, copyright, etc.)
+- **`layouts/_partials/head_custom.html`** — loaded in `<head>`, use for `<style>` blocks or `<link>` tags
+- **`layouts/_partials/footer_custom.html`** — loaded after the `<footer>` element and before page scripts, use for additional markup or late-loading styles
+- **`layouts/_partials/footer.html`** — can be overridden to customize the footer content (links, copyright, etc.)
 
 Create these files in your site's `layouts/` directory (not the theme's) to override them.
 
@@ -24,7 +24,7 @@ The theme separates footer **content** from page **scripts**. The render order i
 2. `footer_custom.html` — your custom additions
 3. `scripts.html` — Bootstrap, `main.js`, KaTeX, PhotoSwipe, and other JS
 
-Because scripts are in a separate `scripts.html` partial, overriding `footer.html` in your site **will not break** bigimg, syntax highlighting, or any other JavaScript feature. Simply create `layouts/partials/footer.html` with your custom footer markup.
+Because scripts are in a separate `scripts.html` partial, overriding `footer.html` in your site **will not break** bigimg, syntax highlighting, or any other JavaScript feature. Simply create `layouts/_partials/footer.html` with your custom footer markup.
 
 For advanced use, a content template can `{{ define "footer" }}` to replace the entire footer section (content + scripts).
 
@@ -59,7 +59,7 @@ Dark mode colors are defined as CSS custom properties on `[data-theme="dark"]` i
 | `--dark-table-odd` | `#181818` | Odd table rows |
 | `--dark-table-even` | `#303030` | Even table rows |
 
-To override these, add rules in `layouts/partials/head_custom.html`:
+To override these, add rules in `layouts/_partials/head_custom.html`:
 
 ```html
 <style>
