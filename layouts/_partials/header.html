@@ -4,6 +4,7 @@
 {{- $headerImgStyle := "big" }}
 {{- $contentColClass := cond .Params.fullWidth "col-12" "col-md-10 offset-md-1" }}
 {{- $isMainContent := in (partial "func/main-sections.html" .) .Type }}
+{{- $isPublication := and (eq .Type "publication") .Params.publication }}
 {{ if .IsHome }}
   {{- $title = .Site.Params.homeTitle | default .Site.Title }}
   {{- $subtitle = .Site.Params.subtitle }}
@@ -37,12 +38,14 @@
             <div class="{{$contentColClass}}">
               <div class="{{ .Type }}-heading">
                 <h1>{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</h1>
-                {{ if not $isMainContent }}
+                {{ if not (or $isMainContent $isPublication) }}
                   <hr class="small">
                 {{ end }}
                 {{ partial "header-subtitle.html" (dict "Context" . "Subtitle" $subtitle) }}
                 {{ if $isMainContent }}
                   {{ partial "post_meta.html" . }}
+                {{ else if $isPublication }}
+                  {{ partial "publication/meta.html" . }}
                 {{ end }}
               </div>
             </div>
@@ -62,12 +65,14 @@
               {{ else }}
               <h1>{{ $title }}</h1>
               {{ end }}
-              {{ if not $isMainContent }}
+              {{ if not (or $isMainContent $isPublication) }}
                 <hr class="small">
               {{ end }}
               {{ partial "header-subtitle.html" (dict "Context" . "Subtitle" $subtitle) }}
               {{ if $isMainContent }}
                 {{ partial "post_meta.html" . }}
+              {{ else if $isPublication }}
+                {{ partial "publication/meta.html" . }}
               {{ end }}
             </div>
           </div>

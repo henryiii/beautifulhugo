@@ -226,3 +226,17 @@
   translation: "Articoli"
 - id: videoUnsupported
   translation: "Il tuo browser non può riprodurre questo video. Scaricalo invece."
+
+# Publication
+- id: publicationCite
+  translation: "Cita"
+- id: publicationWebsite
+  translation: "Sito web"
+- id: publicationCode
+  translation: "Codice"
+- id: publicationSlides
+  translation: "Diapositive"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

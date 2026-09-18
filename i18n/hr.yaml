@@ -226,3 +226,17 @@
   translation: "Objave"
 - id: videoUnsupported
   translation: "Vaš preglednik ne može reproducirati ovaj video. Umjesto toga ga preuzmite."
+
+# Publication
+- id: publicationCite
+  translation: "Citiraj"
+- id: publicationWebsite
+  translation: "Web stranica"
+- id: publicationCode
+  translation: "Kod"
+- id: publicationSlides
+  translation: "Slajdovi"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

@@ -10,14 +10,20 @@
   - `pagerSize` in the page front matter (or site params) overrides the
     global `pagination.pagerSize` for that node.
   - Otherwise Hugo's configured default applies.
+  - A publication section lists everything on one page, so its size is the
+    whole collection and Hugo writes no `/page/N/` variants.
 
   Takes: the page context (.).
   Returns: the paginator.
 */ -}}
 {{- $pages := partial "func/list-pages.html" . -}}
 {{- $paginator := "" -}}
-{{- with .Param "pagerSize" -}}
-  {{- $paginator = $.Paginate $pages (int .) -}}
+{{- $size := .Param "pagerSize" -}}
+{{- if and (eq .Kind "section") (eq .Type "publication") -}}
+  {{- $size = math.Max 1 (len $pages) -}}
+{{- end -}}
+{{- if $size -}}
+  {{- $paginator = .Paginate $pages (int $size) -}}
 {{- else -}}
   {{- $paginator = .Paginate $pages -}}
 {{- end -}}

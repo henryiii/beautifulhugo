@@ -226,3 +226,17 @@
   translation: "Yazılar"
 - id: videoUnsupported
   translation: "Tarayıcınız bu videoyu oynatamıyor. Bunun yerine indirin."
+
+# Publication
+- id: publicationCite
+  translation: "Alıntıla"
+- id: publicationWebsite
+  translation: "Web sitesi"
+- id: publicationCode
+  translation: "Kod"
+- id: publicationSlides
+  translation: "Slaytlar"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

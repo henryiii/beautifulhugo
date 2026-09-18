@@ -2,3 +2,6 @@
 {{- partial "opengraph.html" . }}
 {{- partial "seo/canonical.html" . }}
 {{- partial "seo/twitter" . }}
+{{- if and .IsPage (eq .Type "publication") .Params.publication }}
+{{- partial "seo/meta/citation.html" . }}
+{{- end }}

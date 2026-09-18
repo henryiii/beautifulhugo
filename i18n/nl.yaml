@@ -227,3 +227,17 @@
   translation: "Berichten"
 - id: videoUnsupported
   translation: "Je browser kan deze video niet afspelen. Download de video in plaats daarvan."
+
+# Publication
+- id: publicationCite
+  translation: "Citeren"
+- id: publicationWebsite
+  translation: "Website"
+- id: publicationCode
+  translation: "Code"
+- id: publicationSlides
+  translation: "Dia's"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

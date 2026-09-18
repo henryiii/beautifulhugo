@@ -30,6 +30,8 @@
   {{- $webpage = partial "seo/structured/webpage.html" . }}
   {{- if and (eq .Type "recipe") .Params.recipe }}
     {{- $recipe = partial "seo/structured/recipe.html" . }}
+  {{- else if and (eq .Type "publication") .Params.publication }}
+    {{- $article = partial "seo/structured/scholarly-article.html" . }}
   {{- else }}
     {{- $article = partial "seo/structured/article" . }}
   {{- end }}

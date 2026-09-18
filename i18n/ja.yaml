@@ -222,3 +222,17 @@
   translation: "投稿"
 - id: videoUnsupported
   translation: "お使いのブラウザではこの動画を再生できません。代わりにダウンロードしてください。"
+
+# Publication
+- id: publicationCite
+  translation: "引用"
+- id: publicationWebsite
+  translation: "ウェブサイト"
+- id: publicationCode
+  translation: "コード"
+- id: publicationSlides
+  translation: "スライド"
+- id: publicationPoster
+  translation: "ポスター"
+- id: publicationVideo
+  translation: "動画"

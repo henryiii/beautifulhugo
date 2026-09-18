@@ -569,7 +569,8 @@ img::selection {
 }
 
 .intro-header.big-img .page-heading,
-.intro-header.big-img .post-heading {
+.intro-header.big-img .post-heading,
+.intro-header.big-img .publication-heading {
   padding: 100px 0;
   color: #FFF;
   text-shadow: 1px 1px 3px #000;
@@ -584,7 +585,8 @@ img::selection {
   font-size: 50px;
 }
 
-.intro-header .post-heading h1 {
+.intro-header .post-heading h1,
+.intro-header .publication-heading h1 {
   margin-top: 0;
   font-size: 35px;
 }
@@ -614,7 +616,9 @@ img::selection {
   -moz-box-shadow: 1px 1px 3px #000;
 }
 
-.intro-header.big-img .post-heading .post-meta {
+.intro-header.big-img .post-heading .post-meta,
+.intro-header.big-img .publication-heading .publication-authors,
+.intro-header.big-img .publication-heading .publication-venue {
   color: #EEE;
 }
 
@@ -654,7 +658,9 @@ img::selection {
     font-size: 72px;
   }
 .intro-header .post-heading h1,
-.intro-header .post-heading .h1 {
+.intro-header .post-heading .h1,
+.intro-header .publication-heading h1,
+.intro-header .publication-heading .h1 {
     font-size: 46px;
   }
   .intro-header.big-img.narrow-img .page-heading,
@@ -2005,6 +2011,109 @@ h4.see-also {
 [data-theme="dark"] .recipe-meta-value,
 [data-theme="dark"] .recipe-section-title {
   color: #e0e0e0;
+}
+
+/* --- Publications --- */
+
+.publication-heading .publication-authors {
+  font-size: 20px;
+  margin: 10px 0 0;
+}
+
+.publication-heading .publication-venue {
+  color: #666;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0 0 10px;
+}
+
+.publication-heading .publication-venue em {
+  font-style: normal;
+}
+
+.publication-actions {
+  margin: 0 0 2rem;
+}
+
+.publication-actions .publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.75rem;
+}
+
+.publication-bibtex {
+  margin: 1rem 0 0;
+}
+
+.publication-bibtex pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+.publication-year {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.publication-entries {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.publication-entry {
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted #ddd;
+}
+
+.publication-entry:last-child {
+  border-bottom: none;
+}
+
+.publication-entry > span {
+  display: block;
+}
+
+.publication-entry .publication-title {
+  display: block;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.publication-entry .publication-venue {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.publication-entry .publication-links {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.publication-entry .publication-links a {
+  margin-right: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Dark mode */
+[data-theme="dark"] .publication-heading .publication-venue,
+[data-theme="dark"] .publication-entry .publication-venue {
+  color: #aaa;
+}
+
+[data-theme="dark"] .publication-year {
+  border-bottom-color: #444;
+}
+
+[data-theme="dark"] .publication-entry {
+  border-bottom-color: #444;
 }
 
 [data-theme="dark"] .recipe-ingredients li {

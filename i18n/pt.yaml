@@ -226,3 +226,17 @@
   translation: "Publicações"
 - id: videoUnsupported
   translation: "O seu navegador não consegue reproduzir este vídeo. Descarregue-o em alternativa."
+
+# Publication
+- id: publicationCite
+  translation: "Citar"
+- id: publicationWebsite
+  translation: "Site"
+- id: publicationCode
+  translation: "Código"
+- id: publicationSlides
+  translation: "Diapositivos"
+- id: publicationPoster
+  translation: "Póster"
+- id: publicationVideo
+  translation: "Vídeo"

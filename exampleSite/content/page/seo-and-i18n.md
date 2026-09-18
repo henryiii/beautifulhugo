@@ -16,6 +16,8 @@ The theme automatically generates JSON-LD structured data for every page:
 | `Organization` | All pages | Organization name, logo, URL |
 | `WebPage` | All pages | Page name, description, breadcrumb |
 | `Article` | Blog posts | Headline, author, datePublished, dateModified, publisher, wordCount, timeRequired |
+| `Recipe` | `type: recipe` pages | Ingredients, instructions, times (see [Configuration](../configuration/#recipe-pages)) |
+| `ScholarlyArticle` | `type: publication` pages | Authors, periodical, volume, issue, pages, DOI, PDF (see [Configuration](../configuration/#publication-pages)) |
 | `BreadcrumbList` | All pages | Navigation hierarchy |
 
 No configuration is required — the structured data is generated from your existing `hugo.toml` settings and page front matter. You can optionally customize the structured data output with the following params:
@@ -37,6 +39,10 @@ No configuration is required — the structured data is generated from your exis
   socialProfiles = ["https://twitter.com/example", "https://github.com/example"]
   alternatePageName = "My Company Blog"
 ```
+
+## Google Scholar Meta Tags
+
+Pages with `type: publication` emit Highwire Press `citation_*` meta tags (`citation_title`, `citation_author`, `citation_publication_date`, `citation_journal_title`, `citation_doi`, `citation_pdf_url`, and more). Google Scholar reads these tags to index a paper and link to its PDF. Scholar indexes one paper per page, so each publication needs its own page. See [Configuration — Publication Pages](../configuration/#publication-pages).
 
 ## Open Graph
 

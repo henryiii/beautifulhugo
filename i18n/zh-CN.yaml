@@ -222,3 +222,17 @@
   translation: "文章"
 - id: videoUnsupported
   translation: "您的浏览器无法播放此视频，请下载观看。"
+
+# Publication
+- id: publicationCite
+  translation: "引用"
+- id: publicationWebsite
+  translation: "网站"
+- id: publicationCode
+  translation: "代码"
+- id: publicationSlides
+  translation: "幻灯片"
+- id: publicationPoster
+  translation: "海报"
+- id: publicationVideo
+  translation: "视频"
