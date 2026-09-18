@@ -152,6 +152,20 @@ When an image lives in a [page bundle](https://gohugo.io/content-management/page
 
 Images under `static/` are served as they are. See [Configuration — Image Processing](../configuration/#image-processing) for the `imageProcessing`, `imageWidths`, and `bigimgWidth` settings.
 
+## Markdown Images
+
+Plain Markdown images go through a render hook, so they get the same processing without a shortcode:
+
+```markdown
+![A page resource](forest.jpg "Forest")
+```
+
+When the path resolves to a page-bundle or `assets/` image, the theme emits a `srcset` with the same resized variants, plus `width` and `height` so the browser can reserve the space. The title text becomes the `title` attribute and the alt text becomes `alt`. Every image gets `loading="lazy"`.
+
+Images under `static/`, remote URLs, and SVGs cannot be processed, so they get a plain `<img>`. Set `imageProcessing = false` to serve all images unchanged.
+
+Markdown images are not added to the PhotoSwipe lightbox. Use `beautifulfigure` or `gallery` for that.
+
 ## PhotoSwipe Lightbox
 
 All images rendered through `beautifulfigure` or `gallery` are automatically integrated with PhotoSwipe 5. Clicking any image opens a full-screen lightbox with:
