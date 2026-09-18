@@ -191,7 +191,7 @@ The recommended setup preserves and improves on the old tag-based behavior by in
 
 When `toc = true` (the default), a list-style button appears in the navbar on pages that have headings or list pages that have posts. Clicking it opens a slide-out panel on the left side of the viewport.
 
-The panel is rendered from `baseof.html`, so a site that overrides `single.html`, `list.html`, or `index.html` still gets it.
+The panel is rendered from `baseof.html`, so a site that overrides `page.html`, `list.html`, or `home.html` still gets it.
 
 **On single pages** (posts, regular pages), the panel shows the page's heading hierarchy extracted from the Table of Contents. An `IntersectionObserver` tracks which heading is currently in view and highlights the corresponding link in the panel.
 
@@ -315,7 +315,7 @@ See [SEO & i18n](../seo-and-i18n/) for the full reference including per-page ove
 
 ## Custom HTML Hooks
 
-Beautiful Hugo provides partial "hooks" that let you inject custom HTML at specific points in the layout without forking the theme. To use a hook, create the corresponding file in your site's `layouts/partials/` directory — the theme's own copy is an empty stub.
+Beautiful Hugo provides partial "hooks" that let you inject custom HTML at specific points in the layout without forking the theme. To use a hook, create the corresponding file in your site's `layouts/_partials/` directory — the theme's own copy is an empty stub.
 
 | Partial | Injects Near | Example Use |
 |---------|-------------|-------------|
