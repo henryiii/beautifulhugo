@@ -88,6 +88,9 @@ enableGitInfo = true
 [markup.highlight]
   noClasses = false
 
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false # lets Markdown attributes reach the image render hook
+
 [markup.goldmark.parser.attribute]
   block = true
 

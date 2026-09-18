@@ -21,6 +21,11 @@ Plain Markdown images get the same treatment. This one is a page resource, so it
 
 ![A page-resource Markdown image](forest.jpg "Forest")
 
+A `width` attribute on the next line sets the display size and caps the generated variants:
+
+![A 300 pixel Markdown image](forest.jpg)
+{width=300}
+
 This one is under `static/`, so it is served unchanged:
 
 ![A static Markdown image](/img/global-ike.png)
