@@ -1110,6 +1110,14 @@ footer div.disclaimer {
   margin-bottom: 0;
 }
 
+/* Asciidoctor block titles (admonitions, listings, tables, examples) */
+.blog-post .title,
+.blog-post caption.title {
+  font-weight: bold;
+  font-style: italic;
+  text-align: left;
+}
+
 /* --- Content Utilities --- */
 
 /* Center block element */
