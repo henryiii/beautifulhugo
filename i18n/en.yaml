@@ -230,3 +230,5 @@
   translation:
     one: "{{ .Count }} Sec"
     other: "{{ .Count }} Secs"
+- id: videoUnsupported
+  translation: "Your browser cannot play this video. Download it instead."

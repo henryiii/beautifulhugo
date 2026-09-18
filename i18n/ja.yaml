@@ -220,3 +220,5 @@
   translation: "目次"
 - id: tocPostsLabel
   translation: "投稿"
+- id: videoUnsupported
+  translation: "お使いのブラウザではこの動画を再生できません。代わりにダウンロードしてください。"

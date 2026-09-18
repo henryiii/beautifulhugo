@@ -233,3 +233,5 @@
   translation: "Spis treści"
 - id: tocPostsLabel
   translation: "Wpisy"
+- id: videoUnsupported
+  translation: "Twoja przeglądarka nie może odtworzyć tego filmu. Pobierz go zamiast tego."

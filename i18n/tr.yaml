@@ -224,3 +224,5 @@
   translation: "İçindekiler"
 - id: tocPostsLabel
   translation: "Yazılar"
+- id: videoUnsupported
+  translation: "Tarayıcınız bu videoyu oynatamıyor. Bunun yerine indirin."

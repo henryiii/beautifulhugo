@@ -225,3 +225,5 @@
   translation: "Inhoudsopgave"
 - id: tocPostsLabel
   translation: "Berichten"
+- id: videoUnsupported
+  translation: "Je browser kan deze video niet afspelen. Download de video in plaats daarvan."

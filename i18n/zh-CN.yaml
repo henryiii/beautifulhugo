@@ -220,3 +220,5 @@
   translation: "目录"
 - id: tocPostsLabel
   translation: "文章"
+- id: videoUnsupported
+  translation: "您的浏览器无法播放此视频，请下载观看。"

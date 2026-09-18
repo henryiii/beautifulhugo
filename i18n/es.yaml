@@ -225,3 +225,5 @@
   translation: "Tabla de contenidos"
 - id: tocPostsLabel
   translation: "Publicaciones"
+- id: videoUnsupported
+  translation: "Tu navegador no puede reproducir este vídeo. Descárgalo en su lugar."
