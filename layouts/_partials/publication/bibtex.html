@@ -3,9 +3,10 @@
   front matter when set, otherwise one generated from the other fields.
 */ -}}
 {{- $p := .Params.publication -}}
+{{- $result := "" -}}
 {{- with $p.bibtex -}}
-  {{- return (trim . "\n") -}}
-{{- end -}}
+  {{- $result = trim . "\n" -}}
+{{- else -}}
 {{- $kind := $p.kind | default "article" -}}
 {{- $authors := partial "func/publication-authors.html" . -}}
 {{- $key := $p.key -}}
@@ -39,4 +40,6 @@
 {{- range $fields -}}
   {{- $lines = $lines | append (printf "  %-13s= {%s}" .k .v) -}}
 {{- end -}}
-{{- return (printf "@%s{%s,\n%s\n}" $kind $key (delimit $lines ",\n")) -}}
+  {{- $result = printf "@%s{%s,\n%s\n}" $kind $key (delimit $lines ",\n") -}}
+{{- end -}}
+{{- return $result -}}
