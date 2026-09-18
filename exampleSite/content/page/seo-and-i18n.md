@@ -68,7 +68,7 @@ The `@site` and `@creator` values come from `Params.author.twitter`.
 The card image is resolved from a cascade: page `share_img` → page `image` → site
 `share_img` → site `logo`. Set `share_img` in `[Params]` to give the whole site a wide
 default image, because `logo` is square and crops badly in a `summary_large_image` card.
-The `Recipe` structured data uses the same cascade; `Article` uses the site values only.
+The `Article` and `Recipe` structured data use the same cascade.
 
 ## Robots Meta Tags
 
