@@ -106,9 +106,10 @@ enableGitInfo = true
   enable = true
 [markup.goldmark.extensions.extras.subscript]
   enable = true
-# Superscript stays off here: ^ pairs inside LaTeX become <sup> and break math.
-# [markup.goldmark.extensions.extras.superscript]
-#   enable = true
+# Safe with math because the passthrough extension below keeps LaTeX ^ away
+# from Goldmark.
+[markup.goldmark.extensions.extras.superscript]
+  enable = true
 
 # Headings collected for the table-of-contents panel
 [markup.tableOfContents]
