@@ -70,7 +70,7 @@ $$
 $$
 ```
 
-KaTeX is loaded both from CDN and via self-hosted files (when `selfHosted = true`). MathJax is loaded from CDN even when `selfHosted = true`.
+KaTeX is loaded from CDN, or served from the site when `selfHosted = true`. MathJax is loaded from CDN even when `selfHosted = true`.
 
 ## Mermaid
 

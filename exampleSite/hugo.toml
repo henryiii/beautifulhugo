@@ -40,6 +40,20 @@ enableGitInfo = true
     name = "date"
     weight = 10
 
+# With Params.selfHosted = true the theme fetches Bootstrap, KaTeX, PhotoSwipe,
+# Highlight.js and Fuse.js at build time (resources.GetRemote) and serves them
+# from the site. Hugo keeps the downloads in the getresource file cache, so
+# only the first build needs network access. The CDN URLs are pinned and
+# immutable, so revalidation stays off; enable [HTTPCache] to honour the
+# Cache-Control headers instead. Hugo does not merge these sections from a
+# theme, so they belong in the site configuration.
+# [caches.getresource]
+#   dir = ":cacheDir/:project"
+#   maxAge = -1
+# [HTTPCache]
+#   [HTTPCache.cache.for]
+#     includes = ["**"]
+
 [Params]
   subtitle = "Build a beautiful and simple website in minutes"
   mainSections = ["post", "recipe"]

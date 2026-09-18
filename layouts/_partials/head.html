@@ -47,19 +47,21 @@
 {{ with .Site.Home.OutputFormats.Get "RSS" }}<link rel="alternate" href="{{ .RelPermalink }}" type="application/rss+xml" title="{{ $.Site.Title }}">{{ end }}
 
 {{ $mathEngine := (partial "func/load-math.html" .).engine }}
+{{- /* KaTeX and Font Awesome CSS reference font files by relative path, so
+       their self-hosted copies stay in static/. Everything else goes through
+       the vendor partial. */ -}}
 {{- if .Site.Params.selfHosted -}}
   {{- if eq $mathEngine "katex" }}
     <link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}" />
   {{- end }}
   <link rel="stylesheet" href="{{ "fontawesome/css/all.min.css" | relURL }}" />
-  <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}" />
 {{- else -}}
   {{- if eq $mathEngine "katex" }}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css" integrity="sha384-UA8juhPf75SzzAMA/4fo3yOU7sBJ0om7SCD2GHq0fZqZco6tr1UCV7nUbk9J90JM" crossorigin="anonymous">
   {{- end }}
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.2.0/css/all.css" integrity="sha384-EXatlQyrOJgDaM9/a74ArMzy7/2bTMSrZj8ID1IPeVmc3GncfCugefCFWSLj8JL/" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 {{- end }}
+  {{ partial "vendor.html" "bootstrap-css" }}
 {{- if eq $mathEngine "mathjax" }}
   <script>
     window.MathJax = {
@@ -113,16 +115,9 @@
   {{- /* In "auto" mode the dark sheet is gated by the media query, so it never applies before JS runs. */ -}}
   {{- $darkMedia := cond (eq $colorScheme "auto") "(prefers-color-scheme: dark)" "all" -}}
   {{- if $.Param "useHLJS" }}
-  {{- if .Site.Params.selfHosted -}}
-  <link rel="stylesheet" href="{{ "css/highlight.min.css" | relURL }}" />
-  {{- if ne $colorScheme "light" -}}
-  <link id="hljs-dark" rel="stylesheet" href="{{ "css/highlight-dark.min.css" | relURL }}" media="{{ $darkMedia }}" />
-  {{- end -}}
-  {{- else -}}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css" integrity="sha384-eFTL69TLRZTkNfYZOLM+G04821K1qZao/4QLJbet1pP4tcF+fdXq/9CdqAbWRl/L" crossorigin="anonymous">
-  {{- if ne $colorScheme "light" -}}
-  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css" integrity="sha384-wH75j6z1lH97ZOpMOInqhgKzFkAInZPPSPlZpYKYTOqsaizPvhQZmAtLcPKXpLyH" crossorigin="anonymous" media="{{ $darkMedia }}">
-  {{- end -}}
+  {{ partial "vendor.html" "hljs-css" }}
+  {{- if ne $colorScheme "light" }}
+  {{ partial "vendor.html" (dict "name" "hljs-dark-css" "id" "hljs-dark" "media" $darkMedia) }}
   {{- end -}}
   {{- else if ne $colorScheme "light" -}}
   {{ partial "css.html" (dict "path" "css/syntax-dark.css" "id" "hljs-dark" "media" $darkMedia) }}
@@ -144,11 +139,7 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
   {{- end -}}
 
-  {{- if .Site.Params.selfHosted -}}
-  <link rel="stylesheet" href="{{ "css/photoswipe.css" | relURL }}" />
-  {{- else -}}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
-  {{- end -}}
+  {{ partial "vendor.html" "photoswipe-css" }}
 
   {{- with .Page.ExpiryDate -}}
   {{ partial "meta-robot-unavailable-after.html" . }}

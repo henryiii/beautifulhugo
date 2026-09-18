@@ -34,18 +34,37 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Cache processed images
+      - name: Cache processed images and fetched vendor files
         uses: actions/cache@v4
         with:
-          path: exampleSite/resources/_gen
-          key: hugo-resources-${{ matrix.hugo }}-${{ hashFiles('exampleSite/content/**', 'exampleSite/hugo.toml', 'assets/**') }}
+          path: |
+            exampleSite/resources/_gen
+            ${{ runner.temp }}/hugo_cache
+          key: hugo-resources-${{ matrix.hugo }}-${{ hashFiles('exampleSite/content/**', 'exampleSite/hugo.toml', 'assets/**', 'data/**') }}
           restore-keys: hugo-resources-${{ matrix.hugo }}-
 
       - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: >
           hugo
           --minify
           --gc
           -s exampleSite
+          --logLevel info
+          --panicOnWarning
+
+      # selfHosted fetches the vendor files with resources.GetRemote and
+      # checks them against the SRI hashes in data/beautifulhugo/vendor.toml.
+      - name: Build with Hugo (selfHosted)
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_PARAMS_SELFHOSTED: true
+        run: >
+          hugo
+          --minify
+          --gc
+          -s exampleSite
+          -d public-selfhosted
           --logLevel info
           --panicOnWarning
