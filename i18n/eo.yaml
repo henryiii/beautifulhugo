@@ -224,3 +224,5 @@
   translation: "Enhavtabelo"
 - id: tocPostsLabel
   translation: "Afiŝoj"
+- id: videoUnsupported
+  translation: "Via retumilo ne povas ludi ĉi tiun videon. Elŝutu ĝin anstataŭe."

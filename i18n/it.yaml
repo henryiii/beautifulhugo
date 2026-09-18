@@ -224,3 +224,5 @@
   translation: "Indice"
 - id: tocPostsLabel
   translation: "Articoli"
+- id: videoUnsupported
+  translation: "Il tuo browser non può riprodurre questo video. Scaricalo invece."

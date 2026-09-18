@@ -359,3 +359,5 @@
   translation: "Indes"
 - id: tocPostsLabel
   translation: "Articol"
+- id: videoUnsupported
+  translation: "El tò navigador el pò minga riprodü quest video. Descàrghel inveci."

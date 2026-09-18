@@ -224,3 +224,5 @@
   translation: "Table des matières"
 - id: tocPostsLabel
   translation: "Articles"
+- id: videoUnsupported
+  translation: "Votre navigateur ne peut pas lire cette vidéo. Téléchargez-la à la place."

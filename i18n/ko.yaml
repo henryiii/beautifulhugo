@@ -221,3 +221,5 @@
   translation: "목차"
 - id: tocPostsLabel
   translation: "글"
+- id: videoUnsupported
+  translation: "브라우저에서 이 동영상을 재생할 수 없습니다. 대신 다운로드하세요."

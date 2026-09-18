@@ -224,3 +224,5 @@
   translation: "Índice"
 - id: tocPostsLabel
   translation: "Publicações"
+- id: videoUnsupported
+  translation: "O seu navegador não consegue reproduzir este vídeo. Descarregue-o em alternativa."

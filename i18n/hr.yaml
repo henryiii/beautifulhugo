@@ -224,3 +224,5 @@
   translation: "Sadržaj"
 - id: tocPostsLabel
   translation: "Objave"
+- id: videoUnsupported
+  translation: "Vaš preglednik ne može reproducirati ovaj video. Umjesto toga ga preuzmite."

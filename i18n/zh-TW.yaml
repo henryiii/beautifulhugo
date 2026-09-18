@@ -221,3 +221,5 @@
   translation: "目錄"
 - id: tocPostsLabel
   translation: "文章"
+- id: videoUnsupported
+  translation: "您的瀏覽器無法播放此影片，請下載觀看。"

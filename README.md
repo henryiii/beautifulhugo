@@ -69,7 +69,7 @@ hugo serve
 | **KaTeX math** | Inline `//(...//)` and display `$$...$$` — no config needed |
 | **Mermaid diagrams** | Flowcharts, sequence diagrams, Gantt charts via shortcode |
 | **PhotoSwipe galleries** | `beautifulfigure` and `gallery` shortcodes with lightbox |
-| **Shortcodes** | `details`, `columns`/`column`, `tabs`/`tab`, `mermaid`, `gallery`, `beautifulfigure` |
+| **Shortcodes** | `details`, `columns`/`column`, `tabs`/`tab`, `mermaid`, `gallery`, `beautifulfigure`, `video`, `icon` |
 | **Markdown extensions** | Callout boxes (note/warning/error/success), theme-dependent content, utility classes |
 | **Comment systems** | Disqus, Giscus, Utterances, Cusdis, Staticman |
 | **SEO** | Schema.org JSON-LD, Open Graph, Twitter Cards — automatic |
@@ -86,7 +86,7 @@ hugo serve
 For complete configuration reference, shortcode documentation, and live examples, see the [example site feature pages](https://halogenica.net/beautifulhugo/page/configuration/):
 
 - [Configuration](https://halogenica.net/beautifulhugo/page/configuration/) — every `hugo.toml` parameter
-- [Shortcodes](https://halogenica.net/beautifulhugo/page/shortcodes/) — `details`, `columns`, `tabs`, `gallery`, `mermaid`
+- [Shortcodes](https://halogenica.net/beautifulhugo/page/shortcodes/) — `details`, `columns`, `tabs`, `gallery`, `video`, `mermaid`
 - [Code Blocks](https://halogenica.net/beautifulhugo/page/code-blocks/) — Chroma vs Highlight.js, line numbers, copy button
 - [Markdown Extensions](https://halogenica.net/beautifulhugo/page/markdown-extensions/) — callout boxes, theme-dependent content
 - [Figures & Galleries](https://halogenica.net/beautifulhugo/page/figures-and-galleries/) — PhotoSwipe integration

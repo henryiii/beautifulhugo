@@ -225,3 +225,5 @@
   translation: "Indholdsfortegnelse"
 - id: tocPostsLabel
   translation: "Indlæg"
+- id: videoUnsupported
+  translation: "Din browser kan ikke afspille denne video. Download den i stedet."

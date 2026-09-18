@@ -232,3 +232,5 @@
   translation: "Оглавление"
 - id: tocPostsLabel
   translation: "Записи"
+- id: videoUnsupported
+  translation: "Ваш браузер не может воспроизвести это видео. Скачайте его."
