@@ -1155,7 +1155,6 @@ figcaption, .caption {
   display: block;
   width: 100%;
   height: auto;
-  background: #000;
   border-radius: 5px;
 }
 .video-figure figcaption h4 {
