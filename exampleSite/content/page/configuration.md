@@ -196,6 +196,7 @@ The first build needs network access. Hugo keeps the downloaded files in its `ge
 | `rss` | bool | `false` | Show RSS icon in footer |
 | `disableFigureOverride` | bool | `false` | When `true`, use Hugo's native `<figure>` shortcode; `beautifulfigure` remains available |
 | `navShort` | bool | `false` | Make navbar permanently short (collapsed style) |
+| `mobileMenuPosition` | string | `"right"` | Side of the navbar that holds the hamburger menu button on narrow screens: `"left"` or `"right"` |
 | `showPageDates` | bool | `false` | Show dates on "page" type pages |
 | `hidePostDates` | bool | `false` | If true, hides dates on "post" type pages |
 | `toc` | bool | `true` | Show a floating table-of-contents button on pages with headings |
