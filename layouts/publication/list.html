@@ -7,7 +7,7 @@
             {{.}}
           </div>
         {{ end }}
-        {{ partial "publication-list.html" .RegularPages }}
+        {{ partial "publication-list.html" (partial "func/paginate.html" .).Pages }}
       </div>
     </div>
   </div>

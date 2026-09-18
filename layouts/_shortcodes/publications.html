@@ -2,5 +2,5 @@
        limits it to one content section, `links=false` hides the links. */ -}}
 {{- $pages := where site.RegularPages "Type" "publication" -}}
 {{- with .Get "section" }}{{ $pages = where $pages "Section" . }}{{ end -}}
-{{- $links := ne (.Get "links") "false" -}}
+{{- $links := ne (print (.Get "links")) "false" -}}
 {{- partial "publication-list.html" (dict "Pages" $pages "Links" $links) -}}
