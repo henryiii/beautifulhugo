@@ -58,14 +58,14 @@ Goldmark can add five inline elements to Markdown. They are a Hugo feature, not 
 | `~~removed~~` | `<del>` | ~~removed~~ |
 | `++added++` | `<ins>` | ++added++ |
 | `H~2~O` | `<sub>` | H~2~O |
-| `x^2^` | `<sup>` | see below |
+| `x^2^` | `<sup>` | x^2^ |
 
 The theme styles all five elements for light and dark mode. `<mark>` keeps a readable contrast in dark mode, `<ins>` is underlined, and `<del>` is struck through.
 
 ### Conflicts
 
 - **`delete` and GFM strikethrough.** The GitHub-flavored Markdown strikethrough extension is on by default and also matches a single tilde, so `H~2~O` becomes `H<del>2</del>O`. Set `strikethrough = false` and enable `delete` to get `~~removed~~` and `~sub~` at the same time.
-- **`superscript` and math.** LaTeX uses `^` for exponents. Two exponents on one line become a `<sup>` element and the formula breaks. This example site keeps `superscript` off for that reason. Enable it only if the site has no math, or wrap math in a [Goldmark passthrough](https://gohugo.io/configuration/markup/#passthrough) block.
+- **`superscript` and math.** LaTeX uses `^` for exponents. Without protection, two exponents on one line become a `<sup>` element and the formula breaks. Enable the [Goldmark passthrough](../math-and-diagrams/#passthrough) extension first, as this example site does. It hands math to KaTeX or MathJax unchanged, so `superscript` is safe to turn on.
 
 ## Callout Boxes
 
