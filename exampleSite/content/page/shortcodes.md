@@ -269,6 +269,26 @@ See [Figures & Galleries](../figures-and-galleries/) for details on the routing 
 
 The `gallery` shortcode renders an image gallery grid with PhotoSwipe support. It supports manual mode (place `beautifulfigure` shortcodes inside) and directory mode (auto-populate from a directory). See [Figures & Galleries](../figures-and-galleries/#gallery) for the full parameter reference and live examples.
 
+## icon
+
+The `icon` shortcode renders a Font Awesome icon inline, so markdown content can use the icons the theme already loads. Give it the class list of the icon. Hugo does not allow positional and named arguments together, so use `class="..."` as soon as you add another argument. Add `label` when the icon carries meaning of its own; without it the icon is hidden from screen readers.
+
+**Live example:**
+
+Download the {{< icon "fas fa-file-pdf" >}} PDF guide, or read it on {{< icon class="fab fa-github" label="GitHub" >}}.
+
+**Source:**
+
+```markdown
+Download the {{</* icon "fas fa-file-pdf" */>}} PDF guide, or read it on {{</* icon class="fab fa-github" label="GitHub" */>}}.
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `class` (or first positional) | string | — | Font Awesome class list, e.g. `fas fa-file-pdf` |
+| `label` | string | — | Accessible name. Omit it for a decorative icon |
+| `style` | string | — | Inline CSS, e.g. `color: green` |
+
 ## mermaid
 
 The `mermaid` shortcode renders Mermaid diagrams (flowcharts, sequence diagrams, Gantt charts, etc.) with automatic light/dark mode handling via dual-rendering. It accepts an optional `align` parameter (`center`, `left`, or `right`).
