@@ -1,4 +1,3 @@
-{{- $data := partial "func/data.html" . -}}
 {{ if eq .Type "page" }}
   {{ partial "page_meta.html" . }}
 {{ end }}
@@ -13,38 +12,7 @@
     {{ end }}
     <div class="row">
       <div class="col-md-10 offset-md-1">
-        <ul class="list-inline text-center footer-links">
-          {{ range $data.beautifulhugo.social.social_icons }}
-            {{- $social := . -}}
-            {{- with index $.Site.Params.author $social.id }}
-              <li class="list-inline-item" >
-		{{- $authorValue := . -}}
-		{{- if and (eq $social.id "linkedin") (not (findRE "/" $authorValue)) -}}
-		  {{- $authorValue = printf "in/%s" $authorValue -}}
-		{{- end -}}
-		{{- $href := or (and (or (hasPrefix $authorValue "http://") (hasPrefix $authorValue "https://")) $authorValue) (printf $social.url $authorValue) -}}
-		  <a rel="{{ with $social.rel }}{{ . }} {{ end }}noopener noreferrer" href="{{ $href }}" title="{{ $social.title }}" aria-label="{{ $social.title }}">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="{{ $social.icon }} fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </li>
-            {{- end }}
-          {{ end }}
-          {{ if .Site.Params.rss }}
-          {{ with .Site.Home.OutputFormats.Get "RSS" }}
-          <li class="list-inline-item">
-            <a href="{{ .RelPermalink }}" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          {{ end }}
-          {{ end }}
-        </ul>
+        {{ partialCached "footer-social.html" . .Language.Lang }}
         <p class="credits copyright text-muted">
           {{ if .Site.Params.author.name }}
             {{ if .Site.Params.author.website }}
