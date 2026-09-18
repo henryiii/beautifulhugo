@@ -1,6 +1,8 @@
 {{- $searchProvider := partial "search-provider.html" . -}}
-<nav class="navbar navbar-expand-md navbar-light navbar-custom fixed-top">
+{{- $togglerLeft := eq (.Site.Params.mobileMenuPosition | default "right") "left" -}}
+<nav class="navbar navbar-expand-md navbar-light navbar-custom fixed-top{{ if $togglerLeft }} navbar-toggler-left{{ end }}">
   <div class="container-fluid">
+    {{ if $togglerLeft }}{{ partial "nav-toggler.html" . }}{{ end }}
     <a class="navbar-brand" href="{{ "" | relLangURL }}">{{ .Site.Params.homeTitle | default .Site.Title }}</a>
     <div class="d-flex align-items-center">
       {{ if ne ($.Param "toc") false }}
@@ -23,9 +25,7 @@
         <span class="fas fa-magnifying-glass"></span>
       </button>
       {{ end }}
-      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="{{ i18n "toggleNavigation" }}">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      {{ if not $togglerLeft }}{{ partial "nav-toggler.html" . }}{{ end }}
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">

@@ -245,6 +245,14 @@ img::selection {
   color: #0085a1;
 }
 
+.navbar-custom.navbar-toggler-left .navbar-toggler {
+  margin-right: .5rem;
+}
+
+.navbar-custom.navbar-toggler-left .navbar-brand {
+  margin-right: auto;
+}
+
 .navbar-custom .navbar-brand-logo {
   padding-top: 0;
   transition: padding .5s ease-in-out;
