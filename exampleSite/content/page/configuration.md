@@ -159,25 +159,28 @@ For customizing dark mode colors, theme-dependent content, and other appearance 
 
 ### selfHosted assets
 
-When `selfHosted = true`, the following assets are served from `static/` instead of CDNs:
+When `selfHosted = true`, no third-party asset is loaded from a CDN. Files that are plain JavaScript or CSS are fetched **once at build time** with Hugo's `resources.GetRemote`, checked against the same SRI hash the CDN tag uses, fingerprinted, and published under `vendor/`. Files that ship their own web fonts are served from the theme's `static/` directory.
 
-| Asset | CDN Source | Local Path |
-|-------|-----------|------------|
-| Bootstrap 5.3.5 CSS | `cdn.jsdelivr.net` | `css/bootstrap.min.css` |
-| Font Awesome 7 | `use.fontawesome.com` | `fontawesome/css/all.min.css` + `fontawesome/webfonts/` |
-| KaTeX CSS | `cdn.jsdelivr.net` | `css/katex.min.css` |
-| KaTeX JS | `cdn.jsdelivr.net` | `js/katex.min.js` + `js/auto-render.min.js` |
-| Google Fonts (Lora, Open Sans) | `fonts.googleapis.com` | `css/fonts.css` + `fonts/` |
-| Bootstrap 5.3.5 JS | `cdn.jsdelivr.net` | `js/bootstrap.min.js` |
-| KaTeX JS | `cdn.jsdelivr.net` | `js/katex.min.js` + `js/auto-render.min.js` |
-| Highlight.js | `cdn.jsdelivr.net` | `js/highlight.min.js` + `css/highlight*.min.css` |
-| PhotoSwipe 5.4.4 | `cdn.jsdelivr.net` | `js/photoswipe*.min.js` + `css/photoswipe.css` |
+| Asset | CDN Source | Self-hosted from |
+|-------|-----------|------------------|
+| Bootstrap 5.3.8 CSS and JS | `cdn.jsdelivr.net` | fetched at build time |
+| KaTeX JS | `cdn.jsdelivr.net` | fetched at build time |
+| Highlight.js JS and themes | `cdn.jsdelivr.net` | fetched at build time |
+| PhotoSwipe 5.4.4 | `cdn.jsdelivr.net` | fetched at build time |
+| Fuse.js | `cdn.jsdelivr.net` | fetched at build time |
+| KaTeX CSS and fonts | `cdn.jsdelivr.net` | `static/css/katex.min.css` + `css/fonts/` |
+| Font Awesome 7 | `use.fontawesome.com` | `static/fontawesome/` |
+| Google Fonts (Lora, Open Sans) | `fonts.googleapis.com` | `static/css/fonts.css` + `static/fonts/` |
+
+The URLs and hashes live in `data/beautifulhugo/vendor.toml`. A site can override an entry by adding the same key to its own `data/beautifulhugo/vendor.toml`. A file that does not match its hash stops the build.
 
 ```toml
 [Params]
   colorScheme = "auto"
   selfHosted = false
 ```
+
+The first build needs network access. Hugo keeps the downloaded files in its `getresource` file cache (`:cacheDir/:project`, never expired by default), so later builds work offline. On CI, set `HUGO_CACHEDIR` and cache that directory between runs. Hugo's `[HTTPCache]` section controls whether the cached files are revalidated against the `Cache-Control` headers of the CDN; the pinned URLs above are immutable, so the default (no revalidation) is right. See [Configure HTTP cache](https://gohugo.io/configuration/http-cache/) and [Configure file caches](https://gohugo.io/configuration/caches/).
 
 ## Content Display
 
@@ -406,7 +409,7 @@ The Hugo version is part of the key because a Hugo upgrade can change the output
   codeFences = false
 ```
 
-When `useHLJS = true`, Highlight.js is loaded from CDN (or `static/js/highlight.min.js` if `selfHosted = true`) with a default light theme and a dark theme that activates automatically. You do not need Chroma code fences — Highlight.js applies styles via JavaScript.
+When `useHLJS = true`, Highlight.js is loaded from CDN (or fetched at build time and served from the site if `selfHosted = true`) with a default light theme and a dark theme that activates automatically. You do not need Chroma code fences — Highlight.js applies styles via JavaScript.
 
 {{< /tab >}} {{< /tabs >}}
 
