@@ -127,7 +127,7 @@ Place `beautifulfigure` shortcodes inside a `gallery` shortcode to create a resp
 
 ## Gallery — Directory Mode
 
-Point the `gallery` shortcode at a directory under `/static/` and it will auto-populate from all images found there. Filenames are humanized into captions (e.g. `sunset.jpg` becomes "Sunset").
+Point the `gallery` shortcode at a directory under `/static/` and it will auto-populate from all images found there. Filenames are humanized into captions (e.g. `sunset.jpg` becomes "Sunset"). Image dimensions are read at build time, so the lightbox does not need to download the full-size images until they are opened.
 
 {{< gallery dir="/img/gallery/" caption-effect="fade" />}}
 
