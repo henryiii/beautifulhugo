@@ -164,6 +164,27 @@ When the path resolves to a page-bundle or `assets/` image, the theme emits a `s
 
 Images under `static/`, remote URLs, and SVGs cannot be processed, so they get a plain `<img>`. Set `imageProcessing = false` to serve all images unchanged.
 
+### Sizing Markdown images
+
+Markdown attributes on the line after the image set the display size:
+
+```markdown
+![A page resource](forest.jpg)
+{width=300 .center}
+```
+
+`width` and `height` are copied to the `<img>`. A bare number or a quoted `px` value (`width="400px"`) also caps the resized variants, so a 300 pixel image does not download a 1600 pixel file. Other values such as `width="50%"` are passed through unchanged, as are other attributes such as `class`. This needs two settings in the site configuration:
+
+```toml
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[markup.goldmark.parser.attribute]
+  block = true
+```
+
+Without `wrapStandAloneImageWithinParagraph = false`, Hugo attaches the attributes to the surrounding `<p>` instead of the image.
+
 Markdown images are not added to the PhotoSwipe lightbox. Use `beautifulfigure` or `gallery` for that.
 
 ## PhotoSwipe Lightbox
