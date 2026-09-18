@@ -23,7 +23,7 @@
 {{- $autoplay := in $on (printf "%v" (.Get "autoplay")) -}}
 {{- $controls := not (in (slice "false" "0" "no") (printf "%v" (.Get "controls"))) -}}
 {{- $muted := or $autoplay (in $on (printf "%v" (.Get "muted"))) -}}
-<figure class="video-figure{{ with .Get "class" }} {{ . }}{{ end }}"{{ with .Get "width" }} style="max-width: {{ . | safeCSS }};"{{ end }}>
+<figure class="video-figure no-photoswipe{{ with .Get "class" }} {{ . }}{{ end }}"{{ with .Get "width" }} style="max-width: {{ . | safeCSS }};"{{ end }}>
   <video
     {{- if $controls }} controls{{ end }}
     {{- if $autoplay }} autoplay{{ end }}
