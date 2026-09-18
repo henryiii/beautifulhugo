@@ -3,6 +3,11 @@
   on the site configuration, the social icon registry and the language,
   so footer.html calls it through partialCached.
 
+  Entries come from the registry in data/beautifulhugo/social.toml, keyed
+  by Params.author, followed by any [[Params.author.custom]] entries. A
+  site-level social.toml would replace the registry rather than extend it,
+  so custom entries carry their own href, title and icon.
+
   Takes: the page context (.).
 */ -}}
 {{- $data := partial "func/data.html" . -}}
@@ -24,6 +29,16 @@
                 </a>
               </li>
             {{- end }}
+          {{ end }}
+          {{ range .Site.Params.author.custom }}
+            <li class="list-inline-item">
+              <a rel="{{ with .rel }}{{ . }} {{ end }}noopener noreferrer" href="{{ .href }}" title="{{ .title }}" aria-label="{{ .title }}">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="{{ .icon }} fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                </span>
+              </a>
+            </li>
           {{ end }}
           {{ if .Site.Params.rss }}
           {{ with .Site.Home.OutputFormats.Get "RSS" }}

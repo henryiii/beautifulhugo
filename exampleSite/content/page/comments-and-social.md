@@ -4,7 +4,7 @@ subtitle: Comment systems, social sharing, GitHub buttons, and footer icons
 comments: false
 ---
 
-Beautiful Hugo supports five comment systems, social sharing buttons, GitHub repository buttons, and 42 social icon links in the footer.
+Beautiful Hugo supports five comment systems, social sharing buttons, GitHub repository buttons, and 42 social icon links in the footer, plus custom icons of your own.
 
 ## Comment Systems
 
@@ -203,4 +203,65 @@ For **LinkedIn**, the value should include the path prefix (e.g. `in/username` f
   github = "username"
   linkedin = "in/username"
   mastodon = "https://mastodon.social/@username"
+```
+
+### Custom Icons
+
+Platforms that are not in the table go under `[[Params.author.custom]]`. Each
+entry carries its own link, label and icon class, and appears after the
+built-in icons:
+
+```toml
+[[Params.author.custom]]
+  href = "https://social.example/@username"
+  title = "GoToSocial"
+  icon = "ds-gotosocial"
+  rel = "me"          # optional; "me" enables Fediverse link verification
+```
+
+`icon` is a CSS class. Any Font Awesome free class works with no further
+setup. To use a different icon font, load its stylesheet from your own
+`layouts/_partials/head_custom.html`.
+
+#### Example: Fediverse icons
+
+[Decentralized Social Icons](https://icons.wedistribute.org/) covers about 90
+Fediverse platforms and protocols that Font Awesome does not, such as
+GoToSocial, Friendica, Pixelfed, PeerTube and Lemmy. The theme does not ship
+the font, because most sites do not need it, but a site can add it in three
+steps.
+
+1. Copy `DSoci.css`, `DSoci.woff2` and `DSoci.woff` from the
+   [icon set](https://codeberg.org/WeDistribute/preview-decentralized-social-icons)
+   into your site at `static/dsoci/`. Keep the `LICENSES` directory and the
+   `.license` files with them: the set is [REUSE](https://reuse.software/)
+   compliant, and each logo has its own copyright holder.
+
+2. Load the stylesheet from `layouts/_partials/head_custom.html`:
+
+   ```go-html-template
+   <link rel="stylesheet" href="{{ "dsoci/DSoci.css" | relURL }}">
+   ```
+
+3. Add one entry per account. The class is `ds-` plus the project name:
+
+   ```toml
+   [[Params.author.custom]]
+     href = "https://social.example/@username"
+     title = "GoToSocial"
+     icon = "ds-gotosocial"
+     rel = "me"
+
+   [[Params.author.custom]]
+     href = "https://pixelfed.example/username"
+     title = "Pixelfed"
+     icon = "ds-pixelfed"
+     rel = "me"
+   ```
+
+The icon font sets its own `font-size`. If a glyph looks too large or too
+small next to the built-in icons, correct it in your own CSS:
+
+```css
+.footer-links [class^="ds-"] { font-size: 0.9em; }
 ```
