@@ -21,7 +21,9 @@ Use Hugo 0.146.2 or later. The **standard** edition is sufficient; the theme has
 
 The same file supplies the theme defaults `colorScheme = "auto"` and `mathEngine = "katex"`. Your site configuration overrides them.
 
-Hugo does not merge all sections of a theme configuration into your site configuration. Markup settings (`[markup.highlight]`, `[markup.goldmark]`) must be in your own site configuration — see [Syntax Highlighting](#syntax-highlighting) and [Markdown Extensions](../markdown-extensions/).
+Hugo does not merge all sections of a theme configuration into your site configuration. Markup settings (`[markup.highlight]`, `[markup.goldmark]`) and `[frontmatter]` must be in your own site configuration — see [Syntax Highlighting](#syntax-highlighting), [Markdown Extensions](../markdown-extensions/), and [Last Modified Dates](#last-modified-dates).
+
+Hugo lowercases all configuration keys, so `[Params.author]` and `[params.author]` are the same key. This page uses both spellings for historical reasons; new snippets use the lowercase form.
 
 ## Core Settings
 
@@ -44,6 +46,30 @@ Hugo does not merge all sections of a theme configuration into your site configu
   dateFormat = ":date_long"
   since = 2015
 ```
+
+## Last Modified Dates
+
+The post meta and the page meta show a "last modified" date when it differs from the publication date, and the JSON-LD structured data uses it for `dateModified`. Both read `.Lastmod`.
+
+With `enableGitInfo = true`, Hugo can take that date from the last commit that touched the file. The `[frontmatter]` block sets the order of the sources:
+
+```toml
+enableGitInfo = true
+
+[frontmatter]
+  lastmod = [":git", "lastmod", "date"]
+```
+
+Hugo uses the first source that has a value: the git commit date, then a `lastmod` field in the front matter, then the page date. This is also Hugo's default order, but the explicit list records the intent and removes the extra `modified`, `publishdate`, and `pubdate` fallbacks.
+
+Hugo does not merge `[frontmatter]` from a theme configuration, so the block must go in your own site configuration.
+
+Two build conditions apply:
+
+- Git dates need the file history. A shallow checkout — the default depth of 1 in `actions/checkout` — gives every page the date of that one commit. Set `fetch-depth: 0`.
+- Uncommitted changes make no commit, so the date of a modified file does not move until you commit it.
+
+`enableGitInfo` also supplies `.GitInfo.Hash` for the `commit` link and for the `showSource` link.
 
 ## Math Engine
 
@@ -199,6 +225,25 @@ The panel is rendered from `baseof.html`, so a site that overrides `page.html`, 
 
 The panel is a Bootstrap offcanvas. It can be closed by clicking the close button, clicking the backdrop overlay, or pressing `Escape`. Focus stays inside the panel while it is open and returns to the navbar button when it closes.
 
+#### Heading levels
+
+The panel renders Hugo's `.TableOfContents`, so `[markup.tableOfContents]` controls which headings appear. Hugo does not merge `[markup]` from a theme, so set it in your own site configuration:
+
+```toml
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 4
+  ordered = false
+```
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `startLevel` | int | `2` | First heading level collected. Keep it at `2`: the page title is the `h1`, so `1` adds the title to the panel |
+| `endLevel` | int | `3` | Last heading level collected. `4` includes `h4` |
+| `ordered` | bool | `false` | `true` renders `<ol>` with numbers instead of `<ul>` |
+
+The button only appears when the rendered table of contents has at least one item, so a page with no heading in this range shows no panel.
+
 ## Big Image Header
 
 Add one or more full-width header images to the home page. Multiple images cycle automatically with a fade transition.
@@ -260,6 +305,50 @@ Images that Hugo can reach as resources (files in a page bundle or under the sit
 ```
 
 See [Figures & Galleries](../figures-and-galleries/#page-bundles-and-image-processing) for shortcode details.
+
+### Where processed images are stored
+
+Hugo writes every resized or cropped image to the file cache in `resources/_gen/images/`, next to your `hugo.toml`. The cache is keyed by the source image and the operation, so an unchanged image is processed once and then copied on later builds. Image processing is the slowest part of a Beautiful Hugo build, so a warm cache makes a large difference.
+
+`[caches]` controls the location and the lifetime of each cache:
+
+```toml
+[caches]
+  [caches.images]
+    dir = ":resourceDir/_gen"
+    maxAge = -1
+  [caches.assets]
+    dir = ":resourceDir/_gen"
+    maxAge = -1
+```
+
+These are the Hugo defaults. `maxAge = -1` keeps entries forever; `hugo --gc` removes the entries that the last build did not use. You can either commit `resources/` to the repository or keep it out of version control and restore it in CI.
+
+The example site does not commit `resources/`. Both workflows in `.github/workflows/` restore it instead:
+
+```yaml
+- name: Cache processed images
+  uses: actions/cache@v4
+  with:
+    path: exampleSite/resources/_gen
+    key: hugo-resources-${{ env.HUGO_VERSION }}-${{ hashFiles('exampleSite/content/**', 'exampleSite/hugo.toml', 'assets/**') }}
+    restore-keys: hugo-resources-${{ env.HUGO_VERSION }}-
+```
+
+The Hugo version is part of the key because a Hugo upgrade can change the output of an image operation. The `restore-keys` prefix reuses the newest older cache when the key does not match, so only the changed images are processed again.
+
+### Minification
+
+`hugo --minify` minifies the generated HTML, XML, and JSON. The `[minify]` block tunes it:
+
+```toml
+[minify]
+  minifyOutput = true
+  [minify.tdewolff.html]
+    keepWhitespace = false
+```
+
+`minifyOutput = true` has the same effect as the command-line flag. The theme's own CSS and JS bundles are separate: `css.html` and `js.html` minify them only when the build is a production build (`hugo.IsProduction`), whatever `[minify]` says.
 
 ## Syntax Highlighting
 
