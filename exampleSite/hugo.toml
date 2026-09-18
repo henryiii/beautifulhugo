@@ -52,6 +52,7 @@ enableGitInfo = true
   wordCount = true
   colorScheme = "auto"
   # mathEngine = "katex"  # "katex" (default), "mathjax" (always CDN, even with selfHosted), or "none"
+  mathRender = "server"  # render KaTeX at build time; "client" (default) renders in the browser
   socialShare = true
   delayDisqus = true
   showRelatedPosts = true
