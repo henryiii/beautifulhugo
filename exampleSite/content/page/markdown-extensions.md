@@ -221,3 +221,17 @@ The `.img-title` class makes an image span the full width:
 ```
 {{< /tab >}}
 {{< /tabs >}}
+
+## Asciidoc Block Titles
+
+Asciidoctor writes a block title as `<div class="title">`, for example the title of an admonition or a listing block:
+
+```adoc
+[NOTE]
+.Implementation details
+--
+Content.
+--
+```
+
+The theme styles these titles as bold italic, so they read as a heading for the block instead of as body text.
