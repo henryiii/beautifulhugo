@@ -106,6 +106,16 @@ var main = {
     if (!main.bigImgEl) return;
     main.numImgs = parseInt(main.bigImgEl.getAttribute('data-num-img'), 10) || 0;
 
+    // Fade and cycle timings in seconds, configurable via Params
+    var fadeDuration = parseFloat(main.bigImgEl.getAttribute('data-fade-duration'));
+    if (isNaN(fadeDuration)) fadeDuration = 1;
+    if (fadeDuration < 0) fadeDuration = 0;
+    var fadeMs = fadeDuration * 1000;
+    var cycleInterval = parseFloat(main.bigImgEl.getAttribute('data-cycle-interval'));
+    if (isNaN(cycleInterval)) cycleInterval = 6;
+    if (cycleInterval < 0) cycleInterval = 0;
+    var cycleMs = cycleInterval * 1000;
+
     // set an initial image
     var imgInfo = main.getImgInfo();
     main.setImg(imgInfo.src, imgInfo.desc, imgInfo.position);
@@ -127,6 +137,7 @@ var main = {
       setTimeout(function() {
         var img = document.createElement('div');
         img.className = 'big-img-transition';
+        img.style.transitionDuration = fadeDuration + 's';
         img.style.backgroundImage = 'url(' + next.src + ')';
         if (next.position !== null) {
           img.style.backgroundPosition = next.position;
@@ -139,8 +150,8 @@ var main = {
           main.setImg(next.src, next.desc, next.position);
           img.remove();
           getNextImg();
-        }, 1000);
-      }, 6000);
+        }, fadeMs);
+      }, cycleMs);
     };
 
     // If there are multiple images, cycle through them

@@ -228,6 +228,19 @@ Add one or more full-width header images to the home page. Multiple images cycle
   headerImgStyle = "narrow"
 ```
 
+The cycling timing is also configurable:
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `bigimgFadeDuration` | float | `1` | Fade duration in seconds between header images (`0` for an instant switch) |
+| `bigimgInterval` | float | `6` | Delay in seconds between image fades (how long each image is shown) |
+
+```toml
+[Params]
+  bigimgFadeDuration = 1.5
+  bigimgInterval = 8
+```
+
 See [Pages & Layouts](../pages-and-layouts/#big-image-headers) for per-page big image headers and visual examples.
 
 ## Image Processing
