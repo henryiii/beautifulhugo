@@ -28,7 +28,13 @@
 
   function createFuseEngine(searchIndex) {
     var fuse = new Fuse(searchIndex, {
-      keys: ['title', 'excerpt', 'content'],
+      // Weights are relative: headings outrank the body text.
+      keys: [
+        { name: 'title', weight: 0.4 },
+        { name: 'headings', weight: 0.3 },
+        { name: 'excerpt', weight: 0.2 },
+        { name: 'content', weight: 0.1 }
+      ],
       threshold: 0.3,
       includeScore: true,
       ignoreLocation: true,
