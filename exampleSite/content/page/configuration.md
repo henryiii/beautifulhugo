@@ -305,7 +305,7 @@ Beautiful Hugo supports five comment systems (Disqus, Giscus, Utterances, Cusdis
 
 ## Analytics & Search
 
-Google Analytics, Piwik/Matomo, and search (GCSE or built-in Fuse) are covered in [SEO & i18n](../seo-and-i18n/#analytics-and-search).
+Google Analytics, Piwik/Matomo, and search (GCSE or built-in Fuse) are covered in [SEO & i18n](../seo-and-i18n/#analytics-and-search). The search index size is controlled with `Params.searchSections` and `Params.searchContentWords`; see [Search Index](../seo-and-i18n/#search-index).
 
 ## SEO Robot Meta Tags
 

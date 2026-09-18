@@ -380,4 +380,30 @@ Enable the built-in search UI by configuring a provider:
   provider = "fuse"
 ```
 
+#### Search Index
+
+The home page JSON output holds the index. Each entry has `title`, `url`,
+`excerpt`, `headings` (all headings of the page) and `content` (the plain
+text of the page). Fuse gives the title and the headings more weight than
+the body text.
+
+Pages with the `archive` or `search` layout stay out of the index. To keep
+one more page out, set `searchHidden: true` in its front matter.
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `searchSections` | list | all pages | Content types to index. The entry `mainSections` expands to `Params.mainSections`. |
+| `searchContentWords` | int | `0` | Maximum number of words of body text per entry. `0` keeps the full text. |
+
+```toml
+[Params]
+  searchSections = ["mainSections", "page"]
+  searchContentWords = 200
+```
+
+The index holds the full text of every page by default, which can become
+large on a big site. The two params above make it smaller: the example site
+index goes from 138 kB to 48 kB with `searchContentWords = 200`. Headings
+keep the results good when the body text is cut.
+
 Search labels come from the theme's i18n files. To localize or customize labels, override the relevant translation keys in your site, such as `searchPlaceholder`, `searchResultsLabel`, `searchNoResultsText`, `searchPrevText`, and `searchNextText`.
