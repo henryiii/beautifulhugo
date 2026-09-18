@@ -76,6 +76,7 @@ Two build conditions apply:
 | Param | Type | Default | Description |
 |-------|------|---------|-------------|
 | `mathEngine` | string | `"katex"` | `"katex"`, `"mathjax"`, or `"none"` |
+| `mathRender` | string | `"client"` | `"server"` renders KaTeX at build time (see below) |
 
 - **`"katex"`** — Loads [KaTeX](https://katex.org/) (CSS + JS) for math rendering. This is the current behavior and the default for backward compatibility.
 - **`"mathjax"`** — Loads [MathJax 3](https://www.mathjax.org/) from CDN instead of KaTeX. MathJax is always loaded from CDN regardless of `selfHosted` since it is much larger than KaTeX.
@@ -84,6 +85,17 @@ Two build conditions apply:
 ```toml
 [Params]
   mathEngine = "mathjax"
+```
+
+### Server-side rendering
+
+With `mathRender = "server"` and the KaTeX engine, Hugo renders the math at build time with `transform.ToMath`. The page then needs only the KaTeX CSS. The KaTeX scripts, about 300 KB, are not loaded, and the math shows without a flash of raw LaTeX. This needs the passthrough extension below. The option has no effect with MathJax.
+
+Bad LaTeX is rendered in red by KaTeX, as in the browser, and does not stop the build. Math that a shortcode or a partial adds as raw HTML is not rendered at build time. Set `math: true` in the front matter of that page to load the KaTeX scripts for it.
+
+```toml
+[params]
+  mathRender = "server"
 ```
 
 ### Passthrough
@@ -486,6 +498,7 @@ These options can be set in the front matter of any page or post:
 | `showPostNav` | bool | Override site-level `showPostNav` for this page |
 | `mathEngine` | string | Override site-level `mathEngine` for this page (`"katex"`, `"mathjax"`, or `"none"`) |
 | `math` | bool | Load the math files on this page even if no math is found (needs passthrough) |
+| `mathRender` | string | Override site-level `mathRender` for this page (`"client"` or `"server"`) |
 | `colorScheme` | string | Override site-level `colorScheme` for this page (`"auto"`, `"dark"`, or `"light"`) |
 | `useHLJS` | bool | Override site-level `useHLJS` for this page |
 | `readingTime` | bool | Override site-level `readingTime` for this page |

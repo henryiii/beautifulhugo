@@ -1,6 +1,5 @@
-{{ $mathEngine := $.Param "mathEngine" | default "katex" }}
-{{- /* Pages without math need no math engine. */ -}}
-{{- if not (partial "func/load-math.html" .) }}{{ $mathEngine = "none" }}{{ end }}
+{{ $math := partial "func/load-math.html" . }}
+{{- $mathEngine := cond $math.script $math.engine "none" }}
 {{- if .Site.Params.selfHosted -}}
 {{- if eq $mathEngine "katex" }}
 <script defer src="{{ "js/katex.min.js" | relURL }}"></script>

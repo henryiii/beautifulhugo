@@ -123,7 +123,7 @@ If you want complete control over dark mode styles, you can copy `assets/css/dar
 Beautiful Hugo includes a print stylesheet (`assets/css/print.css`) that is automatically applied when a user prints a page (or uses the browser's "Save as PDF" feature). It provides a clean, printer-friendly layout:
 
 - **Hidden elements**: navbar, TOC panel, comments, social share buttons, GitHub buttons, copy-code buttons, search modal, theme toggle, and big image transition animations are all hidden.
-- **Link URLs shown inline**: non-anchor, non-JavaScript links display their URL in parentheses after the link text (e.g. "Visit Hugo \[https://gohugo.io\]").
+- **Link URLs shown inline**: non-anchor, non-JavaScript links display their URL in parentheses after the link text (e.g. "Visit Hugo" followed by `[https://gohugo.io]`).
 - **Full-width layout**: container and column constraints are removed so content uses the full page width.
 - **Typography**: body text is set to 12pt with 1.5 line height; headings and paragraphs respect orphans/widows rules.
 - **Page breaks**: images, blockquotes, code blocks, and headings avoid being split across pages.

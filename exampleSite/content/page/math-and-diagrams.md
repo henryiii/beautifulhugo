@@ -26,6 +26,10 @@ Single `$` is not an inline delimiter, because prose often contains a stray `$`.
 
 With passthrough enabled, the theme loads the KaTeX or MathJax files only on the pages that contain math. Set `math: true` in the front matter of a page to load them anyway, for example if a shortcode or a partial adds the math. Without passthrough, the theme loads them on every page, and you must escape the delimiters (`\\(` in place of `\(`).
 
+### Server-side rendering
+
+Set `mathRender = "server"` to render KaTeX at build time, as this site does. Pages then load only the KaTeX CSS, and the math is visible before any script runs. See [Configuration — Server-side rendering](../configuration/#server-side-rendering) for the limits.
+
 ### Inline math
 
 The golden ratio is \(\varphi = \frac{1+\sqrt{5}}{2} \approx 1.618\). Euler's identity states that \(e^{i\pi} + 1 = 0\).
