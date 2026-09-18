@@ -223,3 +223,17 @@
   translation: "文章"
 - id: videoUnsupported
   translation: "您的瀏覽器無法播放此影片，請下載觀看。"
+
+# Publication
+- id: publicationCite
+  translation: "引用"
+- id: publicationWebsite
+  translation: "網站"
+- id: publicationCode
+  translation: "程式碼"
+- id: publicationSlides
+  translation: "投影片"
+- id: publicationPoster
+  translation: "海報"
+- id: publicationVideo
+  translation: "影片"

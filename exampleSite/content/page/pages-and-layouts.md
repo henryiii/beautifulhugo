@@ -120,6 +120,25 @@ recipe:
 
 See [Configuration — Recipe Pages](../configuration/#recipe-pages) for the full `recipe` front matter reference and the archetype scaffold.
 
+## Publication Pages
+
+Pages with `type: publication` describe one academic paper each. They show the authors and venue under the title and a BibTeX entry above the page body, emit Google Scholar `citation_*` meta tags and [schema.org/ScholarlyArticle](https://schema.org/ScholarlyArticle) JSON-LD, and their section list is grouped by year instead of paginated. Create them with a `publication` front matter map:
+
+```yaml
+---
+title: "On the Optimal Steeping Time of Static Site Generators"
+type: publication
+date: 2026-03-14
+publication:
+  authors: ["Ada Teapot", "Some Person"]
+  venue: Journal of Implausible Web Engineering
+  doi: "10.0000/jiwe.2026.0001"
+  pdf: paper.pdf
+---
+```
+
+See the [demo section](../../publication/) and [Configuration — Publication Pages](../configuration/#publication-pages) for the full `publication` front matter reference.
+
 ## Section Listings
 
 A section listing page (e.g. `/post/`) shows a paginated list of post previews. It uses `layouts/list.html`. To add content above the post list, create a `_index.md` in the section directory:
@@ -230,6 +249,7 @@ Beautiful Hugo ships with archetypes (content templates) that pre-fill front mat
 | `hugo new post/my-post.md` | `post.md` | `title`, `subtitle`, `date`, `draft`, `author`, `description`, `categories`, `tags`, `bigimg`, `comments` |
 | `hugo new page/my-page.md` | `page.md` | `title`, `subtitle`, `date`, `draft`, `description`, `comments`, `fullWidth` |
 | `hugo new recipe/my-recipe.md` | `recipe.md` | `title`, `type: recipe`, `date`, `subtitle`, `image`, `tags`, `recipe` map |
+| `hugo new publication/my-paper.md` | `publication.md` | `title`, `type: publication`, `date`, `tags`, `publication` map |
 | `hugo new <section>/foo.md` | `default.md` | `title`, `date`, `draft` |
 
 Hugo selects the archetype based on the content section. If the section directory matches an archetype name (e.g. `post/`, `page/`, `recipe/`), that archetype is used. Otherwise the `default.md` archetype is used.

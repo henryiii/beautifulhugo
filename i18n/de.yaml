@@ -233,3 +233,17 @@
     other: "{{ .Count }} Sek."
 - id: videoUnsupported
   translation: "Ihr Browser kann dieses Video nicht abspielen. Laden Sie es stattdessen herunter."
+
+# Publication
+- id: publicationCite
+  translation: "Zitieren"
+- id: publicationWebsite
+  translation: "Webseite"
+- id: publicationCode
+  translation: "Code"
+- id: publicationSlides
+  translation: "Folien"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

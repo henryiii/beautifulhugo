@@ -235,3 +235,17 @@
   translation: "Wpisy"
 - id: videoUnsupported
   translation: "Twoja przeglądarka nie może odtworzyć tego filmu. Pobierz go zamiast tego."
+
+# Publication
+- id: publicationCite
+  translation: "Cytuj"
+- id: publicationWebsite
+  translation: "Strona"
+- id: publicationCode
+  translation: "Kod"
+- id: publicationSlides
+  translation: "Slajdy"
+- id: publicationPoster
+  translation: "Plakat"
+- id: publicationVideo
+  translation: "Wideo"

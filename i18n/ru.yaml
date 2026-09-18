@@ -234,3 +234,17 @@
   translation: "Записи"
 - id: videoUnsupported
   translation: "Ваш браузер не может воспроизвести это видео. Скачайте его."
+
+# Publication
+- id: publicationCite
+  translation: "Цитировать"
+- id: publicationWebsite
+  translation: "Сайт"
+- id: publicationCode
+  translation: "Код"
+- id: publicationSlides
+  translation: "Слайды"
+- id: publicationPoster
+  translation: "Постер"
+- id: publicationVideo
+  translation: "Видео"

@@ -361,3 +361,17 @@
   translation: "Articol"
 - id: videoUnsupported
   translation: "El tò navigador el pò minga riprodü quest video. Descàrghel inveci."
+
+# Publication
+- id: publicationCite
+  translation: "Cita"
+- id: publicationWebsite
+  translation: "Sit web"
+- id: publicationCode
+  translation: "Codes"
+- id: publicationSlides
+  translation: "Diapositiv"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

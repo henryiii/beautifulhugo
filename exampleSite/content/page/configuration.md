@@ -483,7 +483,7 @@ These options can be set in the front matter of any page or post:
 | `video` | string | Post preview video (loop, autoplay, muted) |
 | `summary` | string | Custom summary text |
 | `description` | string | Page description for meta tags and structured data (see [SEO & i18n — Description Cascade](../seo-and-i18n/#description-cascade)) |
-| `type` | string | Content type that determines template behavior: `"page"`, `"post"`, or `"recipe"` (see [Pages & Layouts](../pages-and-layouts/)) |
+| `type` | string | Content type that determines template behavior: `"page"`, `"post"`, `"recipe"`, or `"publication"` (see [Pages & Layouts](../pages-and-layouts/)) |
 | `author` | string/list | Per-page author(s) (string or list of strings; supports Markdown links, e.g. `"[Jane Doe](https://example.com)"`) |
 | `tags` | list | Tags for categorization |
 | `categories` | list | Categories for grouping posts |
@@ -578,3 +578,66 @@ Time values use the ISO 8601 duration format:
 | `PT2H` | 2 hours |
 
 `P` marks the start, `T` separates date from time components, and `H`/`M`/`S` are hours, minutes, seconds.
+
+## Publication Pages
+
+Beautiful Hugo supports academic publications, one page per paper. A `type: publication` page shows the authors and venue under the title, and link buttons and a BibTeX entry above the page body, and its `head` gets [Highwire Press `citation_*` meta tags](https://scholar.google.com/intl/en/scholar/inclusion.html#indexing) so Google Scholar can index the paper, plus [schema.org/ScholarlyArticle](https://schema.org/ScholarlyArticle) JSON-LD. The section list groups the papers by year. See the [demo section](../../publication/).
+
+### Setup
+
+Create content files with `type: publication` and a `publication` front matter map. The page body is the abstract or a short description:
+
+```yaml
+---
+title: "On the Optimal Steeping Time of Static Site Generators"
+type: publication
+date: 2026-03-14
+tags: ["hugo", "tea"]
+publication:
+  authors: ["Ada Teapot", "Some Person"]
+  kind: article
+  venue: Journal of Implausible Web Engineering
+  volume: 42
+  number: 7
+  pages: 1-11
+  doi: "10.0000/jiwe.2026.0001"
+  arxiv: "0000.00001"
+  pdf: paper.pdf
+  code: https://example.com/teapot
+---
+
+We steep a static site generator in hot water and measure build times.
+```
+
+Quote `doi` and `arxiv` values, or YAML parses them as numbers. `date` is the publication date; the section list groups by its year. Add a `_index.md` to the section and link it from the navbar.
+
+### Publication front matter reference
+
+| Key | Type | Required | Description |
+|-----|------|----------|-------------|
+| `publication.authors` | list | no | Author names in citation order. Falls back to the page `author` or the site author. A name equal to `Params.author.name` is shown in bold |
+| `publication.kind` | string | no | BibTeX entry type: `article` (default), `inproceedings`, `book`, `incollection`, `phdthesis`, `mastersthesis`, `techreport`, `misc`, and so on. Selects the venue field in the BibTeX and meta tags |
+| `publication.venue` | string | no | Journal, conference proceedings, institution, or school (supports Markdown) |
+| `publication.volume` | string | no | Volume |
+| `publication.number` | string | no | Issue number |
+| `publication.pages` | string | no | Page range (`"1-11"`) or article number |
+| `publication.publisher` | string | no | Publisher |
+| `publication.doi` | string | no | DOI, without the `https://doi.org/` prefix |
+| `publication.arxiv` | string | no | arXiv identifier (`"0000.00001"`) |
+| `publication.pdf` | string | no | PDF: a page-bundle resource, a path under `static/`, or a URL. Becomes `citation_pdf_url` |
+| `publication.url` | string | no | Publisher or project page |
+| `publication.code` | string | no | Source code URL |
+| `publication.slides` | string | no | Slides (resource, static path, or URL) |
+| `publication.poster` | string | no | Poster (resource, static path, or URL) |
+| `publication.video` | string | no | Video URL |
+| `publication.key` | string | no | BibTeX citation key. Defaults to the first author's last name plus the year (`teapot2026`) |
+| `publication.bibtex` | string | no | Hand-written BibTeX entry. Replaces the generated one |
+
+### How it works
+
+- **Meta tags**: Each publication page emits `citation_title`, `citation_author`, `citation_publication_date`, `citation_journal_title` (or the conference, dissertation, or technical report equivalent), `citation_volume`, `citation_issue`, `citation_firstpage`, `citation_lastpage`, `citation_doi`, `citation_arxiv_id`, `citation_pdf_url`, and `citation_abstract_html_url`. Google Scholar needs one page per paper, so a listing page or a Markdown table is not indexed.
+- **Structured data**: Pages with `type: publication` emit a `ScholarlyArticle` JSON-LD block in place of the `Article` one, with the authors, the periodical, volume, issue, page range, DOI, and PDF.
+- **Visual rendering**: The page header shows the authors (site author in bold) and the venue line under the title. Link buttons and a collapsible BibTeX entry are rendered above the page body.
+- **Section list**: A section of publication pages (for example `content/publication/`) is listed grouped by year, newest first, with the authors, venue, and links. It is not paginated. The `publications` shortcode renders the same list on any page.
+- **Archetype**: Use `hugo new publication/my-paper.md` to get a pre-filled front matter scaffold.
+- **Page behavior**: Publication pages behave like blog posts (previous/next navigation and comments) since they are not `type: page`.

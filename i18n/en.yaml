@@ -232,3 +232,17 @@
     other: "{{ .Count }} Secs"
 - id: videoUnsupported
   translation: "Your browser cannot play this video. Download it instead."
+
+# Publication
+- id: publicationCite
+  translation: "Cite"
+- id: publicationWebsite
+  translation: "Website"
+- id: publicationCode
+  translation: "Code"
+- id: publicationSlides
+  translation: "Slides"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

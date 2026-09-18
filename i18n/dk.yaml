@@ -227,3 +227,17 @@
   translation: "Indlæg"
 - id: videoUnsupported
   translation: "Din browser kan ikke afspille denne video. Download den i stedet."
+
+# Publication
+- id: publicationCite
+  translation: "Citér"
+- id: publicationWebsite
+  translation: "Hjemmeside"
+- id: publicationCode
+  translation: "Kode"
+- id: publicationSlides
+  translation: "Slides"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Video"

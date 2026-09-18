@@ -226,3 +226,17 @@
   translation: "Afiŝoj"
 - id: videoUnsupported
   translation: "Via retumilo ne povas ludi ĉi tiun videon. Elŝutu ĝin anstataŭe."
+
+# Publication
+- id: publicationCite
+  translation: "Citi"
+- id: publicationWebsite
+  translation: "Retejo"
+- id: publicationCode
+  translation: "Kodo"
+- id: publicationSlides
+  translation: "Lumbildoj"
+- id: publicationPoster
+  translation: "Afiŝo"
+- id: publicationVideo
+  translation: "Video"

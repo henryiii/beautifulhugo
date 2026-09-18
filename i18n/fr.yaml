@@ -226,3 +226,17 @@
   translation: "Articles"
 - id: videoUnsupported
   translation: "Votre navigateur ne peut pas lire cette vidéo. Téléchargez-la à la place."
+
+# Publication
+- id: publicationCite
+  translation: "Citer"
+- id: publicationWebsite
+  translation: "Site web"
+- id: publicationCode
+  translation: "Code"
+- id: publicationSlides
+  translation: "Diapositives"
+- id: publicationPoster
+  translation: "Poster"
+- id: publicationVideo
+  translation: "Vidéo"

@@ -361,6 +361,27 @@ This text is wrapped in `data-nosnippet` and should not appear in search engine 
 
 See [SEO & i18n](../seo-and-i18n/) for the full robot meta tags and AI summary limit configuration.
 
+## publications
+
+The `publications` shortcode lists every `type: publication` page on the site, grouped by year, with the same markup as a publication section list. Use it to place the list on a regular page, such as a research group page.
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `section` | all | Only list pages from this content section |
+| `links` | `true` | Set to `false` to hide the DOI, PDF, and other links |
+
+**Live example:**
+
+{{< publications links=false >}}
+
+**Source:**
+
+```markdown
+{{</* publications links=false */>}}
+```
+
+See [Configuration — Publication Pages](../configuration/#publication-pages) for the page type itself.
+
 ## include-code
 
 The `include-code` shortcode reads a source file from disk and renders it with syntax highlighting. It supports auto-detection of the language from the file extension, line numbers, and line highlighting (Chroma only).

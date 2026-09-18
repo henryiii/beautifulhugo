@@ -225,6 +225,12 @@ enableGitInfo = true
     weight = 5
 
 [[menu.main]]
+    parent = "features"
+    name = "Publications"
+    url = "publication/"
+    weight = 6
+
+[[menu.main]]
     identifier = "blog"
     name = "Blog"
     weight = 3
