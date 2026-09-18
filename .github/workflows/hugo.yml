@@ -36,6 +36,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: Cache processed images
+        uses: actions/cache@v4
+        with:
+          path: exampleSite/resources/_gen
+          key: hugo-resources-${{ env.HUGO_VERSION }}-${{ hashFiles('exampleSite/content/**', 'exampleSite/hugo.toml', 'assets/**') }}
+          restore-keys: hugo-resources-${{ env.HUGO_VERSION }}-
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

@@ -34,6 +34,13 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Cache processed images
+        uses: actions/cache@v4
+        with:
+          path: exampleSite/resources/_gen
+          key: hugo-resources-${{ matrix.hugo }}-${{ hashFiles('exampleSite/content/**', 'exampleSite/hugo.toml', 'assets/**') }}
+          restore-keys: hugo-resources-${{ matrix.hugo }}-
+
       - name: Build with Hugo
         run: >
           hugo

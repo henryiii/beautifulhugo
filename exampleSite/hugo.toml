@@ -10,6 +10,11 @@ enableGitInfo = true
 [pagination]
   pagerSize = 5
 
+# With enableGitInfo, ":git" makes .Lastmod the commit date of the file.
+# Hugo does not merge [frontmatter] from a theme, so it must stay here.
+[frontmatter]
+  lastmod = [":git", "lastmod", "date"]
+
 [Services]
   [Services.Disqus]
     # Shortname = "XXX"
@@ -87,6 +92,29 @@ enableGitInfo = true
 
 [markup.goldmark.renderer]
   unsafe = true
+
+# Extra inline markup: ==mark==, ~~delete~~, ^sup^, ~sub~, ++insert++
+# GFM strikethrough also matches a single tilde, so it must go off for ~sub~.
+[markup.goldmark.extensions]
+  strikethrough = false
+
+[markup.goldmark.extensions.extras.delete]
+  enable = true
+[markup.goldmark.extensions.extras.insert]
+  enable = true
+[markup.goldmark.extensions.extras.mark]
+  enable = true
+[markup.goldmark.extensions.extras.subscript]
+  enable = true
+# Superscript stays off here: ^ pairs inside LaTeX become <sup> and break math.
+# [markup.goldmark.extensions.extras.superscript]
+#   enable = true
+
+# Headings collected for the table-of-contents panel
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 4
+  ordered = false
 
 [[menu.main]]
     identifier = "setup"

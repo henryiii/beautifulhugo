@@ -31,6 +31,42 @@ The `{.class}` attribute must be on its own line immediately after the block. Th
 
 Both options can be enabled together. The examples below show each approach — switch tabs to see the alternative syntax.
 
+## Inline Markup Extras
+
+Goldmark can add five inline elements to Markdown. They are a Hugo feature, not a theme feature, so you enable them in your own site configuration. Hugo does not merge `[markup]` from a theme.
+
+```toml
+# GFM strikethrough also matches a single tilde, so it must go off for ~sub~
+[markup.goldmark.extensions]
+  strikethrough = false
+
+[markup.goldmark.extensions.extras.delete]
+  enable = true
+[markup.goldmark.extensions.extras.insert]
+  enable = true
+[markup.goldmark.extensions.extras.mark]
+  enable = true
+[markup.goldmark.extensions.extras.subscript]
+  enable = true
+[markup.goldmark.extensions.extras.superscript]
+  enable = true
+```
+
+| Markdown | HTML | Result |
+|----------|------|--------|
+| `==highlight==` | `<mark>` | ==highlight== |
+| `~~removed~~` | `<del>` | ~~removed~~ |
+| `++added++` | `<ins>` | ++added++ |
+| `H~2~O` | `<sub>` | H~2~O |
+| `x^2^` | `<sup>` | see below |
+
+The theme styles all five elements for light and dark mode. `<mark>` keeps a readable contrast in dark mode, `<ins>` is underlined, and `<del>` is struck through.
+
+### Conflicts
+
+- **`delete` and GFM strikethrough.** The GitHub-flavored Markdown strikethrough extension is on by default and also matches a single tilde, so `H~2~O` becomes `H<del>2</del>O`. Set `strikethrough = false` and enable `delete` to get `~~removed~~` and `~sub~` at the same time.
+- **`superscript` and math.** LaTeX uses `^` for exponents. Two exponents on one line become a `<sup>` element and the formula breaks. This example site keeps `superscript` off for that reason. Enable it only if the site has no math, or wrap math in a [Goldmark passthrough](https://gohugo.io/configuration/markup/#passthrough) block.
+
 ## Callout Boxes
 
 Callout boxes are now available as a `callout` shortcode supporting multiple paragraphs and an optional title. See [Shortcodes](../shortcodes/#callout) for full documentation and live examples.
