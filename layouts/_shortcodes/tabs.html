@@ -43,24 +43,4 @@
   </div>
 </div>
 
-{{- if $explicitGroup -}}
-  {{- $syncKey := printf "tabs-sync-%s" $explicitGroup -}}
-  {{- if not (.Page.Store.Get $syncKey) -}}
-    {{- .Page.Store.Set $syncKey true -}}
-    <script>
-      document.addEventListener('shown.bs.tab', (event) => {
-        const button = event.target;
-        const syncGroup = button?.dataset?.tabGroup;
-        const syncKey = button?.dataset?.tabKey;
-        if (!syncGroup || !syncKey) return;
-
-        document.querySelectorAll('.tabs-shortcode .nav-link').forEach((candidate) => {
-          if (candidate === button) return;
-          if (candidate.dataset.tabGroup !== syncGroup || candidate.dataset.tabKey !== syncKey) return;
-          if (candidate.classList.contains('active')) return;
-          bootstrap.Tab.getOrCreateInstance(candidate).show();
-        });
-      });
-    </script>
-  {{- end -}}
-{{- end -}}
+{{- if $explicitGroup }}{{ .Page.Store.Set "beautifulhugoTabsSync" true }}{{ end -}}
