@@ -26,10 +26,10 @@
 <figure class="video-figure{{ with .Get "class" }} {{ . }}{{ end }}"{{ with .Get "width" }} style="max-width: {{ . | safeCSS }};"{{ end }}>
   <video
     {{- if $controls }} controls{{ end }}
-    {{- if $autoplay }} autoplay playsinline{{ end }}
+    {{- if $autoplay }} autoplay{{ end }}
     {{- if $muted }} muted{{ end }}
     {{- if in $on (printf "%v" (.Get "loop")) }} loop{{ end }}
-    {{- if in $on (printf "%v" (.Get "playsinline")) }} playsinline{{ end }}
+    {{- if not (in (slice "false" "0" "no") (printf "%v" (.Get "playsinline"))) }} playsinline{{ end }}
     {{- with $poster }} poster="{{ . }}"{{ end }}
     {{- with .Get "preload" }} preload="{{ . }}"{{ end }}
     {{- with .Get "alt" }} aria-label="{{ . }}"{{ end }}>

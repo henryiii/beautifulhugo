@@ -277,12 +277,12 @@ Paths resolve like `beautifulfigure`: page bundle resources and files under `ass
 
 **Live example:**
 
-{{< video src="/video/sample.mp4" poster="/video/sample-poster.jpg" width="480px" caption="A generated test pattern, 6 seconds long" attr="ffmpeg testsrc2" attrlink="https://ffmpeg.org/" >}}
+{{< video src="/video/sample.mp4" poster="/video/sample-poster.jpg" width="480px" caption="A generated colour gradient, 8 seconds long and silent" attr="ffmpeg gradients" attrlink="https://ffmpeg.org/" >}}
 
 **Source:**
 
 ```markdown
-{{</* video src="/video/sample.mp4" poster="/video/sample-poster.jpg" width="480px" caption="A generated test pattern, 6 seconds long" attr="ffmpeg testsrc2" attrlink="https://ffmpeg.org/" */>}}
+{{</* video src="/video/sample.mp4" poster="/video/sample-poster.jpg" width="480px" caption="A generated colour gradient, 8 seconds long and silent" attr="ffmpeg gradients" attrlink="https://ffmpeg.org/" */>}}
 ```
 
 A muted, looping clip that starts on its own works as an animated image replacement:
@@ -302,10 +302,10 @@ A muted, looping clip that starts on its own works as an animated image replacem
 | `attr`, `attrlink` | string | — | Attribution text and optional link |
 | `alt` | string | — | Accessible name for the video element |
 | `controls` | bool | `true` | Show the browser's playback controls |
-| `autoplay` | bool | `false` | Start playback automatically. Implies `muted` and `playsinline`, which browsers require for autoplay |
+| `autoplay` | bool | `false` | Start playback automatically. Implies `muted`, which browsers require for autoplay |
 | `loop` | bool | `false` | Restart the video when it ends |
 | `muted` | bool | `false` | Start with the sound off |
-| `playsinline` | bool | `false` | Play inline on mobile instead of full screen |
+| `playsinline` | bool | `true` | Play in the page on mobile. Set to `false` to let iOS open the full-screen player |
 | `preload` | string | browser default | `none`, `metadata`, or `auto` |
 | `track` | string | — | WebVTT captions file, shown by default |
 | `trackLang` | string | — | Language code of the captions file |
